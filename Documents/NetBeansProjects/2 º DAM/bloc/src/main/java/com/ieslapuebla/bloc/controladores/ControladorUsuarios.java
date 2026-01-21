@@ -25,16 +25,14 @@ public class ControladorUsuarios {
 
                 ResultSet resultadoConsulta = consultaSelect.executeQuery();
 
-                if (resultadoConsulta.next()) {
+                while (resultadoConsulta.next()) {
 
-                    while (resultadoConsulta.next()) {
-
-                        int id = resultadoConsulta.getInt("id");
-                        String usu = resultadoConsulta.getString("usuario");
-                        String password = resultadoConsulta.getString("contrasena");
-                    }
-                    return true;
+                    int id = resultadoConsulta.getInt("id");
+                    String usu = resultadoConsulta.getString("usuario");
+                    String password = resultadoConsulta.getString("contrasena");
                 }
+                return true;
+
 
             } catch (SQLException e) {
                 System.out.println("Error al ejecutar la consulta");
