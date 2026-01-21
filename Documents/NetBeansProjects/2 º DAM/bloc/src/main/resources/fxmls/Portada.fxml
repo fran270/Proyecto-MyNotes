@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="509.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.PortadaController">
+   <children>
+      <Pane prefHeight="57.0" prefWidth="722.0" style="-fx-background-color: rgb(63, 188, 192);">
+         <children>
+            <Label layoutX="607.0" layoutY="18.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="82.0" text="Cerrar Sesion" />
+            <Label fx:id="opcion1" layoutX="269.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="89.0" style="-fx-text-fill: black;" text="INICIO">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="opcion2" layoutX="343.0" layoutY="18.0" onMouseClicked="#verNotas" prefHeight="18.0" prefWidth="70.0" style="-fx-text-fill: black;" text="NOTAS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="489.0" layoutY="13.0" prefHeight="31.0" prefWidth="102.0" style="-fx-text-fill: white;" />
+            <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="opcion3" layoutX="413.0" layoutY="18.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="-1.0" layoutY="57.0" prefHeight="450.0" prefWidth="722.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
