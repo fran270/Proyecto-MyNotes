@@ -74,6 +74,19 @@ public class ImportarNotaController implements Initializable {
         stage.show();
     }
 
+    
+    @FXML
+    private void verPapelera(MouseEvent event) throws IOException {
+        
+        Stage stage = (Stage) opcion3.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
+
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        stage.show();
+    }
+
+    
     @FXML
     private void seleccionarArchivo(ActionEvent event) {
         
@@ -133,6 +146,7 @@ public class ImportarNotaController implements Initializable {
         System.exit(0);
     }
 
+   
     
 
 }

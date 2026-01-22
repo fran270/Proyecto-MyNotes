@@ -25,20 +25,24 @@ public class ControladorUsuarios {
 
                 ResultSet resultadoConsulta = consultaSelect.executeQuery();
 
-                while (resultadoConsulta.next()) {
+                if (resultadoConsulta.next()) {
 
-                    int id = resultadoConsulta.getInt("id");
-                    String usu = resultadoConsulta.getString("usuario");
-                    String password = resultadoConsulta.getString("contrasena");
+                    while (resultadoConsulta.next()) {
+
+                        int id = resultadoConsulta.getInt("id");
+                        String usu = resultadoConsulta.getString("usuario");
+                        String password = resultadoConsulta.getString("contrasena");
+                       
+                    }
+
+                    return true;
                 }
-                return true;
-
 
             } catch (SQLException e) {
                 System.out.println("Error al ejecutar la consulta");
                 System.out.printf("ERROR: %s\n", e.getMessage());
             }
-            
+
         } catch (SQLException e) {
             System.out.println("Error en la conexion con la base de datos");
             System.out.printf("ERROR: %s\n", e.getMessage());

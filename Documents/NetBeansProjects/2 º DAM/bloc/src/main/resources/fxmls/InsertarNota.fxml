@@ -46,7 +46,7 @@
                </font></Label>
             <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="539.0" layoutY="14.0" prefHeight="31.0" prefWidth="102.0" />
             <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="opcion3" layoutX="433.0" layoutY="19.0" onMouseClicked="#verNotas" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
+            <Label fx:id="opcion3" layoutX="433.0" layoutY="19.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

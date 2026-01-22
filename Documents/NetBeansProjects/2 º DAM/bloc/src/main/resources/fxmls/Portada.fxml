@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -11,11 +14,7 @@
       <Pane prefHeight="57.0" prefWidth="722.0" style="-fx-background-color: rgb(63, 188, 192);">
          <children>
             <Label layoutX="607.0" layoutY="18.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="82.0" text="Cerrar Sesion" />
-            <Label fx:id="opcion1" layoutX="269.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="89.0" style="-fx-text-fill: black;" text="INICIO">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label fx:id="opcion2" layoutX="343.0" layoutY="18.0" onMouseClicked="#verNotas" prefHeight="18.0" prefWidth="70.0" style="-fx-text-fill: black;" text="NOTAS">
+            <Label fx:id="opcion1" layoutX="251.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="61.0" style="-fx-text-fill: black;" text="INICIO">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
@@ -26,11 +25,23 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
+            <MenuBar fx:id="opcion2" layoutX="312.0" layoutY="16.0" prefHeight="18.0" prefWidth="80.0" style="-fx-background-color: rgb(63, 188, 192);">
+               <menus>
+                  <Menu mnemonicParsing="false" text="NOTAS">
+                     <items>
+                        <MenuItem fx:id="op1" mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
+                        <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
+                        <MenuItem fx:id="notasFijadas" mnemonicParsing="false" text="Notas Fijadas" />
+                        <MenuItem mnemonicParsing="false" text="Notas Archivadas" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
          </children>
       </Pane>
       <Pane layoutX="-1.0" layoutY="57.0" prefHeight="450.0" prefWidth="722.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="370.0" fitWidth="601.0" layoutX="71.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>

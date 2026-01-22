@@ -75,22 +75,35 @@ public class ModificarNotaController implements Initializable {
     @FXML
     private void verNotas(MouseEvent event) throws IOException {
 
-        Stage stage = (Stage) opcion2.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Portada.fxml"));
+        verNotas();
+    }
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    @FXML
+    private void verPapelera(MouseEvent ev) {
+
+        Stage stage = (Stage) opcion3.getScene().getWindow();
+
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+            System.out.printf("ERROR: %s\n", ex.getMessage());
+        }
+
     }
 
     public void recibirIdNota(int id) {
 
         this.idNota = id;
-       
+
         cargarDatos(idNota);
     }
-    
-    
+
     private void cargarDatos(int id) {
 
         notas = FXCollections.observableArrayList();
@@ -107,7 +120,6 @@ public class ModificarNotaController implements Initializable {
             descripcionNota.setText(contenido);
             fechaModificacion.setText(String.valueOf(fecha));
         }
-
     }
 
     /*private void habilitar() {
@@ -131,9 +143,29 @@ public class ModificarNotaController implements Initializable {
         String tituloNota = nombreNota.getText();
         String descripcion = descripcionNota.getText();
         String fechaEdicion = fechaModificacion.getText();
-       
+
         Nota notaModificar = new Nota(tituloNota, descripcion, null, fechaEdicion, idNota);
         ControladorNotas.modificarNota(notaModificar);
+        verNotas();
+    }
+
+    private void verNotas() {
+
+        Stage stage = (Stage) opcion2.getScene().getWindow();
+
+        try {
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Notas.fxml"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+        } catch (IOException ex) {
+            
+            System.out.printf("ERROR: %s\n", ex.getMessage());
+        }
+
     }
 
     @FXML

@@ -5,25 +5,34 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class PortadaController implements Initializable {
 
-    @FXML
-    private Label opcion2;
+  
     @FXML
     private Label opcion1;
     @FXML
-    private Label usuarioConectado;
+    private MenuBar opcion2;
     @FXML
     private Label opcion3;
+    @FXML
+    private Label usuarioConectado;
+  
+    @FXML
+    private MenuItem op1;
+    @FXML
+    private MenuItem notasFijadas;
     
     
     @Override
@@ -34,7 +43,6 @@ public class PortadaController implements Initializable {
 
         //Mostramos el nombre de usuario conectado en label que tiene id usuario
         usuarioConectado.setText(usu1);
-
     }
 
     @FXML
@@ -50,14 +58,18 @@ public class PortadaController implements Initializable {
     }
 
     @FXML
-    private void verNotas(MouseEvent event) throws IOException {
-
+    private void verNotas(ActionEvent event) throws IOException {
+        
         Stage stage = (Stage) opcion2.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Notas.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    @FXML
+    private void importarNota(ActionEvent event) {
     }
     
     @FXML
@@ -77,4 +89,5 @@ public class PortadaController implements Initializable {
         Platform.exit();
         System.exit(0);
     }
+
 }

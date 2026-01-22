@@ -1,6 +1,5 @@
 package com.ieslapuebla.bloc.controladores;
 
-
 import com.ieslapuebla.bloc.modelos.Usuario;
 import com.ieslapuebla.bloc.utils.AbrirVentanas;
 import java.io.IOException;
@@ -67,7 +66,6 @@ public class FormularioRegistroController implements Initializable {
         stage.show();
     }
 
-    
 
     @FXML
     private void insertarUsuario(ActionEvent event) {

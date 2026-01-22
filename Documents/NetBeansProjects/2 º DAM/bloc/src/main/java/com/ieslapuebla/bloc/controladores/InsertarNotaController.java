@@ -50,6 +50,10 @@ public class InsertarNotaController implements Initializable {
     private Label errorDescripcionNota;
     @FXML
     private TextField fecha;
+    @FXML
+    private ImageView iconoInsertar;
+    @FXML
+    private Label opcion3;
     
     private ObservableList<Nota> notas;
     private String usuario;
@@ -57,10 +61,6 @@ public class InsertarNotaController implements Initializable {
     private String contenidoNota;
     private String fechaCreacion;
     private int usuarioId;
-    @FXML
-    private ImageView iconoInsertar;
-    @FXML
-    private Label opcion3;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,6 +93,18 @@ public class InsertarNotaController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    @FXML
+    private void verPapelera(MouseEvent event) throws IOException {
+        
+        Stage stage = (Stage) opcion3.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     private void guardarNota(ActionEvent event) {
@@ -121,7 +133,7 @@ public class InsertarNotaController implements Initializable {
             
         } else {
             
-            Nota nota = new Nota(tituloNota, contenidoNota, fechaCreacion, null, usuarioId);
+            Nota nota = new Nota(usuarioId, tituloNota, contenidoNota, fechaCreacion, null);
             ControladorNotas.insertarNota(nota);
             
             limpiarCampos();
@@ -142,4 +154,5 @@ public class InsertarNotaController implements Initializable {
         System.exit(0);
     }
 
+   
 }

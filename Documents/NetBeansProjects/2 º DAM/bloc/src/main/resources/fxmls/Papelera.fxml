@@ -7,30 +7,39 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="660.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.ieslapuebla.bloc.controladores.PapeleraController">
+<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.PapeleraController">
    <children>
       <Pane layoutY="-2.0" prefHeight="51.0" prefWidth="660.0" style="-fx-background-color: rgb(63, 188, 192);">
          <children>
             <Label fx:id="cerrar" layoutX="566.0" layoutY="17.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="82.0" text="Cerrar Sesion" />
-            <Label fx:id="opcion1" layoutX="269.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="89.0" text="INICIO" />
-            <Label fx:id="opcion2" layoutX="394.0" layoutY="18.0" onMouseClicked="#verNotas" prefHeight="18.0" prefWidth="70.0" text="NOTAS" />
-            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="464.0" layoutY="13.0" prefHeight="31.0" prefWidth="102.0" />
+            <Label fx:id="opcion2" layoutX="314.0" layoutY="17.0" onMouseClicked="#verNotas" prefHeight="18.0" prefWidth="70.0" text="NOTAS" />
+            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="454.0" layoutY="10.0" prefHeight="31.0" prefWidth="102.0" />
             <ImageView fitHeight="38.0" fitWidth="174.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="opcion1" layoutX="241.0" layoutY="17.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="60.0" text="INICIO" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="opcion3" layoutX="384.0" layoutY="17.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutY="49.0" prefHeight="382.0" prefWidth="660.0">
          <children>
-            <Label layoutX="62.0" layoutY="31.0" prefHeight="31.0" prefWidth="204.0" text="Notas borradas" />
-            <Button layoutX="510.0" layoutY="111.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="109.0" text="Restaurar" />
-            <TableView layoutX="56.0" layoutY="73.0" prefHeight="252.0" prefWidth="447.0">
+            <Label layoutX="62.0" layoutY="31.0" prefHeight="31.0" prefWidth="204.0" text="PAPELERA DE RECICLAJE" />
+            <Button fx:id="botonRestaurar" layoutX="510.0" layoutY="111.0" mnemonicParsing="false" onAction="#restaurarNota" prefHeight="18.0" prefWidth="109.0" style="-fx-background-color: #09519e;" text="Restaurar" />
+            <TableView fx:id="notasPapelera" layoutX="56.0" layoutY="73.0" prefHeight="252.0" prefWidth="447.0">
               <columns>
-                  <TableColumn prefWidth="121.0" text="Nota" />
-                <TableColumn prefWidth="185.0" text="Fecha Modificacion" />
-                <TableColumn prefWidth="140.0" text="Opcion" />
+                  <TableColumn prefWidth="214.0" text="Nota" />
+                <TableColumn prefWidth="232.0" text="Fecha Modificacion" />
               </columns>
             </TableView>
+            <Button fx:id="botonEliminar" layoutX="510.0" layoutY="157.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="18.0" prefWidth="109.0" style="-fx-background-color: red;" text="Eliminar" />
          </children>
       </Pane>
    </children>

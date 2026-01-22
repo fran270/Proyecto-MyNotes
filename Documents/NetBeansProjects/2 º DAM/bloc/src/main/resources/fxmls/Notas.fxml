@@ -14,29 +14,28 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="862.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.NotasController">
+<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="841.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.NotasController">
    <children>
       <Pane prefHeight="53.0" prefWidth="861.0" style="-fx-background-color: rgb(63, 188, 192);">
          <children>
-            <Label layoutX="616.0" layoutY="18.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="95.0" text="Cerrar Sesion" />
+            <Label layoutX="733.0" layoutY="18.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="95.0" text="Cerrar Sesion" />
             <Label fx:id="opcion1" layoutX="269.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="89.0" text="INICIO" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="483.0" layoutY="12.0" prefHeight="31.0" prefWidth="102.0" />
+            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="582.0" layoutY="11.0" prefHeight="31.0" prefWidth="102.0" />
             <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="opcion3" layoutX="448.0" layoutY="18.0" onMouseClicked="#verNotas" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
+            <Label fx:id="opcion3" layoutX="448.0" layoutY="18.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <MenuBar fx:id="opcion2" layoutX="342.0" layoutY="16.0" prefHeight="18.0" prefWidth="80.0" style="-fx-background-color: rgb(63, 188, 192);">
+            <MenuBar fx:id="opcion2" layoutX="343.0" layoutY="16.0" prefHeight="18.0" prefWidth="80.0" style="-fx-background-color: rgb(63, 188, 192);">
               <menus>
                 <Menu mnemonicParsing="false" text="NOTAS">
                   <items>
-                        <MenuItem fx:id="verNotas" mnemonicParsing="false" text="Listado de Notas" />
-                    <MenuItem fx:id="crearNota" mnemonicParsing="false" text="Crear Nota" />
-                        <MenuItem fx:id="importarNota" mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
+                        <MenuItem fx:id="op1" mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
+                        <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
                         <MenuItem fx:id="notasFijadas" mnemonicParsing="false" text="Notas Fijadas" />
                         <MenuItem mnemonicParsing="false" text="Notas Archivadas" />
                   </items>
@@ -45,9 +44,9 @@
             </MenuBar>
          </children>
       </Pane>
-      <Button fx:id="boton_anadir" layoutX="163.0" layoutY="511.0" mnemonicParsing="false" onAction="#crearNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(25, 135, 84);" text="Añadir Nota" textFill="WHITE" />
-      <Button fx:id="boton_modificar" layoutX="366.0" layoutY="511.0" mnemonicParsing="false" onAction="#modificarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(255, 199, 32);" text="Modificar Nota" />
-      <Button fx:id="boton_eliminar" layoutX="572.0" layoutY="511.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(220, 53, 69);" text="Eliminar Nota" />
+      <Button fx:id="botonInsertar" layoutX="163.0" layoutY="511.0" mnemonicParsing="false" onAction="#crearNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(25, 135, 84);" text="Añadir Nota" textFill="WHITE" />
+      <Button fx:id="botonModificar" layoutX="366.0" layoutY="511.0" mnemonicParsing="false" onAction="#modificarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(255, 199, 32);" text="Modificar Nota" />
+      <Button fx:id="botonEliminar" layoutX="572.0" layoutY="511.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(220, 53, 69);" text="Eliminar Nota" />
       <TableView fx:id="tabla" accessibleRole="TABLE_COLUMN" layoutX="68.0" layoutY="152.0" prefHeight="344.0" prefWidth="680.0">
         <columns>
           <TableColumn fx:id="nota" prefWidth="112.0" text="Nota" />

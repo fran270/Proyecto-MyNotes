@@ -30,12 +30,6 @@ import javax.swing.JOptionPane;
 public class NotasController implements Initializable {
 
     @FXML
-    private Button boton_anadir;
-    @FXML
-    private Button boton_modificar;
-    @FXML
-    private Button boton_eliminar;
-    @FXML
     private Label opcion1;
     @FXML
     private MenuBar opcion2;
@@ -55,9 +49,6 @@ public class NotasController implements Initializable {
     private TableColumn<Nota, String> fecha_creacion;
     @FXML
     private TableColumn<Nota, String> fecha_modificacion;
-    private String usuario;
-    private ObservableList<Nota> notas;
-    private int idUsuario;
     @FXML
     private MenuButton etiquetas;
     @FXML
@@ -68,17 +59,23 @@ public class NotasController implements Initializable {
     private MenuItem etiqueta3;
     @FXML
     private TableColumn<Nota, String> contenido;
-    private Nota notaSeleccionada;
-    @FXML
-    private MenuItem verNotas;
-    @FXML
-    private MenuItem crearNota;
-    @FXML
-    private MenuItem importarNota;
     @FXML
     private MenuItem notasFijadas;
+    @FXML
+    private MenuItem op1;
+    @FXML
+    private Button botonInsertar;
+    @FXML
+    private Button botonModificar;
+    @FXML
+    private Button botonEliminar;
+    
+    private Nota notaSeleccionada;
+    private String usuario;
+    private ObservableList<Nota> notas;
+    private int idUsuario;
     private int idNota;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -104,7 +101,6 @@ public class NotasController implements Initializable {
         stage.show();
     }
 
-    @FXML
     private void verNotas(MouseEvent event) throws IOException {
 
         Stage stage = (Stage) opcion2.getScene().getWindow();
@@ -115,43 +111,42 @@ public class NotasController implements Initializable {
         stage.show();
     }
 
-    private void verPapelera() {
+    @FXML
+    private void verPapelera(MouseEvent ev) {
 
-        opcion3.setOnMouseClicked(e -> {
+        try {
 
-            try {
+            Stage stage = (Stage) opcion3.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
 
-                Stage stage = (Stage) opcion3.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
+            Scene escena = new Scene(root);
+            stage.setScene(escena);
+            stage.show();
 
-                Scene escena = new Scene(root);
-                stage.setScene(escena);
-                stage.show();
-
-            } catch (IOException ex) {
-                System.out.println("Error al cargar el fichero");
-                System.out.printf("ERROR: %s", ex.getMessage());
-            }
-
-        });
+        } catch (IOException ex) {
+            System.out.println("Error al cargar el fichero");
+            System.out.printf("ERROR: %s", ex.getMessage());
+        }
 
     }
-
+    
+    
     @FXML
-    private void importarNota() throws IOException {
-
+    private void verNotas(ActionEvent event) throws IOException {
+        
         Stage stage = (Stage) opcion2.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ImportarNota.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Notas.fxml"));
 
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
+
 
     @FXML
     private void crearNota(ActionEvent event) throws IOException {
 
-        Stage stage = (Stage) boton_anadir.getScene().getWindow();
+        Stage stage = (Stage) botonInsertar.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/InsertarNota.fxml"));
 
         Scene scene = new Scene(root);
@@ -164,7 +159,7 @@ public class NotasController implements Initializable {
        
         notaSeleccionada = tabla.getSelectionModel().getSelectedItem();
         
-        boton_modificar.setOnMouseClicked(e -> {
+        botonModificar.setOnMouseClicked(e -> {
 
             if (notaSeleccionada == null) {
 
@@ -184,7 +179,7 @@ public class NotasController implements Initializable {
                     // Pasar el ID de la nota seleccionada al nuevo controlador
                     controlador.recibirIdNota(notaSeleccionada.getIdNota());
                     
-                    Stage stage = (Stage) boton_modificar.getScene().getWindow();
+                    Stage stage = (Stage) botonModificar.getScene().getWindow();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
@@ -199,6 +194,18 @@ public class NotasController implements Initializable {
         });
     }
 
+    
+    @FXML
+    private void importarNota() throws IOException {
+
+        Stage stage = (Stage) opcion2.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ImportarNota.fxml"));
+
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        stage.show();
+    }
+    
     @FXML
     private void eliminarNota(ActionEvent event) {
 
@@ -255,4 +262,5 @@ public class NotasController implements Initializable {
         System.exit(0);
     }
 
+   
 }

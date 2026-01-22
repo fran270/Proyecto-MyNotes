@@ -208,7 +208,7 @@ public class ControladorNotas {
                     int resultadoConsulta = consultaDelete.executeUpdate();
 
                     if (resultadoConsulta > 0) {
-                        JOptionPane.showMessageDialog(null, "Se ha borrado la nota");
+                        JOptionPane.showMessageDialog(null, "La nota se ha borrado correctamente");
                     } else {
                         JOptionPane.showMessageDialog(null, "No se ha podido borrar la nota", "Error de borrado", JOptionPane.ERROR_MESSAGE);
                     }

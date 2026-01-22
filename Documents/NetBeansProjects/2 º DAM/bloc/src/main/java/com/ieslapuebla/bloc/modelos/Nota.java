@@ -20,8 +20,17 @@ public class Nota {
         this.fechaModificacion = fechaModificacion;
         this.idNota = idNota;
     }
-   
+    
+    public Nota(int idUsuario, String nombreNota, String contenido, String fechaCreacion, String fechaModificacion) {
 
+        this.idUsuario = idUsuario;
+        this.nombreNota = nombreNota;
+        this.contenido = contenido;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaModificacion = fechaModificacion;
+    }
+    
+   
     //Metodos getters y setters
     public int getIdNota() {
 
