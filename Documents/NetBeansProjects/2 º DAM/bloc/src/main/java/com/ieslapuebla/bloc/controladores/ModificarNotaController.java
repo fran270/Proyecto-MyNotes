@@ -50,7 +50,6 @@ public class ModificarNotaController implements Initializable {
     @FXML
     private Button botonDeshacer;
     private String usuario;
-    private int idUsuario;
     private int idNota;
     private ObservableList<Nota> notas;
 
@@ -137,6 +136,8 @@ public class ModificarNotaController implements Initializable {
             botonDeshacer.setDisable(false);
         });
     }*/
+    
+    
     @FXML
     private void actualizarNota(ActionEvent event) {
 
@@ -144,7 +145,7 @@ public class ModificarNotaController implements Initializable {
         String descripcion = descripcionNota.getText();
         String fechaEdicion = fechaModificacion.getText();
 
-        Nota notaModificar = new Nota(tituloNota, descripcion, null, fechaEdicion, idNota);
+        Nota notaModificar = new Nota(idNota, tituloNota, descripcion, null, fechaEdicion);
         ControladorNotas.modificarNota(notaModificar);
         verNotas();
     }

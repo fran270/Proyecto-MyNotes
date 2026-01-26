@@ -133,7 +133,7 @@ public class InsertarNotaController implements Initializable {
             
         } else {
             
-            Nota nota = new Nota(usuarioId, tituloNota, contenidoNota, fechaCreacion, null);
+            Nota nota = new Nota(tituloNota, contenidoNota, fechaCreacion, null, usuarioId);
             ControladorNotas.insertarNota(nota);
             
             limpiarCampos();

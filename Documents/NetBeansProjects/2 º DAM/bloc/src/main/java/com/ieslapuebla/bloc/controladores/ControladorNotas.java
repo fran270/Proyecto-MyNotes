@@ -32,7 +32,7 @@ public class ControladorNotas {
                     String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
                     String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
                     
-                    nota.add(new Nota(nombreNota, contenido, fechaCreacion, fechaModificacion, idNota));
+                    nota.add(new Nota(idNota, nombreNota, contenido, fechaCreacion, fechaModificacion));
                 }
 
             } catch (SQLException e) {
@@ -104,7 +104,7 @@ public class ControladorNotas {
                     String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
                     String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
 
-                    notas.add(new Nota(nombreNota, contenidoNota, fechaCreacion, fechaModificacion, idNota));
+                    notas.add(new Nota(idNota, nombreNota, contenidoNota, fechaCreacion, fechaModificacion));
                 }
 
                 return true;

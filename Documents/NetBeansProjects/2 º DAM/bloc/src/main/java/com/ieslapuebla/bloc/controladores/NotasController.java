@@ -74,7 +74,7 @@ public class NotasController implements Initializable {
     private String usuario;
     private ObservableList<Nota> notas;
     private int idUsuario;
-    private int idNota;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -175,7 +175,7 @@ public class NotasController implements Initializable {
 
                     // Obtener el controlador del FXML cargado
                     ModificarNotaController controlador = loader.getController();
-                    
+                   
                     // Pasar el ID de la nota seleccionada al nuevo controlador
                     controlador.recibirIdNota(notaSeleccionada.getIdNota());
                     

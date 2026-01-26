@@ -1,9 +1,13 @@
 package com.ieslapuebla.bloc.controladores;
 
+import com.ieslapuebla.bloc.modelos.Nota;
 import com.ieslapuebla.bloc.modelos.Usuario;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -20,6 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ImportarNotaController implements Initializable {
 
@@ -42,6 +48,7 @@ public class ImportarNotaController implements Initializable {
     @FXML
     private MenuItem formato2;
     private String usuario;
+    private int idUsuario;
     @FXML
     private Label opcion3;
 
@@ -50,6 +57,8 @@ public class ImportarNotaController implements Initializable {
 
         usuario = Usuario.getUsuario();
         usuarioConectado.setText(usuario);
+
+        idUsuario = ControladorUsuarios.obtenerId(usuario);
     }
 
     @FXML
@@ -74,10 +83,9 @@ public class ImportarNotaController implements Initializable {
         stage.show();
     }
 
-    
     @FXML
     private void verPapelera(MouseEvent event) throws IOException {
-        
+
         Stage stage = (Stage) opcion3.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
 
@@ -86,12 +94,12 @@ public class ImportarNotaController implements Initializable {
         stage.show();
     }
 
-    
     @FXML
     private void seleccionarArchivo(ActionEvent event) {
-        
+
         String nombreArchivo = "";
-        
+        String rutaArchivo = "";
+
         FileChooser archivo = new FileChooser();
         archivo.setInitialDirectory(new File("C:/Users/Fran Crespo Crespo/Documents/ficheros sql"));
 
@@ -99,8 +107,9 @@ public class ImportarNotaController implements Initializable {
 
         if (archivoSeleccionado != null) {
             nombreArchivo = archivoSeleccionado.getName();
+            rutaArchivo = archivoSeleccionado.getPath();
             botonArchivo.setText(nombreArchivo);
-            importarArchivo(archivoSeleccionado, nombreArchivo);
+            importarNota(nombreArchivo, rutaArchivo);
         } else {
             JOptionPane.showMessageDialog(null, "No has seleccionado ningun archivo", "Error de seleccion", JOptionPane.ERROR_MESSAGE);
         }
@@ -119,7 +128,7 @@ public class ImportarNotaController implements Initializable {
         });
     }
 
-    private void importarArchivo(File archivo, String nombreArchivo) {
+    private void importarNota(String nombreArchivo, String rutaArchivo) {
 
         botonImportar.setOnAction(e -> {
 
@@ -129,24 +138,79 @@ public class ImportarNotaController implements Initializable {
             // Guardamos la extension en esta variable
             String extension = array[1];
 
-            if (extension.equals("json") || extension.equals("csv")) {
-                System.out.println("El formato es valido");
-                //ControladorNotas.insertarNota();
+            if (extension.equals("json")) {
+                
+                importarFicheroJson(rutaArchivo);
+
+            } else if(extension.equals("csv")){
+                
+                importarFicheroCSV(rutaArchivo);
+                
             } else {
-                JOptionPane.showMessageDialog(null, "El formato del fichero tiene que ser json o csv", "Formato no valido", JOptionPane.ERROR_MESSAGE);
+     
+                JOptionPane.showMessageDialog(null, "La extensión del fichero tiene que ser json o csv", "Formato no valido", JOptionPane.ERROR_MESSAGE);
             }
 
         });
     }
 
+    private void importarFicheroJson(String rutaFichero) {
+
+        //Recorrer el fichero json con BufferedReader
+        try (BufferedReader leerFichero = new BufferedReader(new FileReader(rutaFichero))) {
+
+            String linea;
+
+            StringBuilder datos = new StringBuilder();
+
+            while ((linea = leerFichero.readLine()) != null) {
+                datos.append(linea);
+            }
+
+            JSONArray jsonArray = new JSONArray(datos.toString());
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            Iterator<String> claves = jsonObject.keys();
+
+            Object valor = "";
+            String cadena = "";
+
+            //Extraer los datos de la nota
+            for (int i = 0; i < jsonObject.length(); i++) {
+                String clave = claves.next();
+                valor = jsonObject.get(clave);
+
+                cadena = cadena + valor + ",";
+            }
+
+            String[] datosNota = cadena.split(",");
+            String nombreNota = datosNota[0];
+            String contenidoNota = datosNota[1];
+            String fechaCreacion = datosNota[2];
+            String fechaModificacion = datosNota[3];
+
+            //Crear un objeto Nota y que reciba los datos como parametros
+            Nota notaImportar = new Nota(nombreNota, contenidoNota, fechaCreacion, fechaModificacion, idUsuario);
+
+            //invocar al metodo que inserta la nota en la bd
+            ControladorNotas.insertarNota(notaImportar);
+
+            JOptionPane.showMessageDialog(null, "La nota se ha importado correctamente");
+
+        } catch (IOException ex) {
+            System.out.println("Error al leer el fichero");
+            System.out.printf("ERROR: %s", ex.getMessage());
+        }
+    }
+    
+    private void importarFicheroCSV(String rutaFichero){
+        
+    }
+
     @FXML
     private void cerrarSesion(MouseEvent event) {
-        
+
         Platform.exit();
         System.exit(0);
     }
-
-   
-    
-
 }

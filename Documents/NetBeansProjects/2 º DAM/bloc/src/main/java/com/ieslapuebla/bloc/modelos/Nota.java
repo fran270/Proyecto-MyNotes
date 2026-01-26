@@ -12,22 +12,22 @@ public class Nota {
     private String etiqueta;
 
     //Constructor de la clase
-    public Nota(String nombreNota, String contenido, String fechaCreacion, String fechaModificacion, int idNota) {
+    public Nota(int idNota, String nombreNota, String contenido, String fechaCreacion, String fechaModificacion) {
 
+        this.idNota = idNota;
         this.nombreNota = nombreNota;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
-        this.idNota = idNota;
     }
     
-    public Nota(int idUsuario, String nombreNota, String contenido, String fechaCreacion, String fechaModificacion) {
+    public Nota(String nombreNota, String contenido, String fechaCreacion, String fechaModificacion, int idUsuario) {
 
-        this.idUsuario = idUsuario;
         this.nombreNota = nombreNota;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
+        this.idUsuario = idUsuario;
     }
     
    
