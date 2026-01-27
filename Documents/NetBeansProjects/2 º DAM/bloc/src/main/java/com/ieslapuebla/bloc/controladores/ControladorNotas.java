@@ -140,7 +140,7 @@ public class ControladorNotas {
                 int resultadoConsulta = consultaInsert.executeUpdate();
 
                 if (resultadoConsulta > 0) {
-                    JOptionPane.showMessageDialog(null, "Se ha guardado la nota");
+                    JOptionPane.showMessageDialog(null, "La nota se ha guardado correctamente");
                 } else {
                     JOptionPane.showMessageDialog(null, "No se ha podido guardar la nota", null, JOptionPane.ERROR_MESSAGE);
                 }

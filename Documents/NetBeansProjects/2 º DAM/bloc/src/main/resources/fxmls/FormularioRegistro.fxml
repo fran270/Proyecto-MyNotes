@@ -15,7 +15,7 @@
    <children>
       <Pane layoutX="22.0" layoutY="15.0" prefHeight="494.0" prefWidth="685.0">
          <children>
-            <Label fx:id="error_correo" layoutX="269.0" layoutY="348.0" prefHeight="17.0" prefWidth="227.0" textFill="#f23726" />
+            <Label fx:id="errorCorreo" layoutX="269.0" layoutY="348.0" prefHeight="17.0" prefWidth="227.0" textFill="#f23726" />
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="260.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icono_usuario.png" />
@@ -33,8 +33,8 @@
                </font>
             </Label>
             <PasswordField fx:id="contrasena" layoutX="267.0" layoutY="266.0" prefHeight="25.0" prefWidth="233.0" />
-            <Label fx:id="error_usuario" layoutX="267.0" layoutY="239.0" prefHeight="17.0" prefWidth="233.0" textFill="#f23726" />
-            <Label fx:id="error_contrasena" layoutX="266.0" layoutY="294.0" prefHeight="23.0" prefWidth="233.0" textFill="#f23726" />
+            <Label fx:id="errorUsuario" layoutX="267.0" layoutY="239.0" prefHeight="17.0" prefWidth="233.0" textFill="#f23726" />
+            <Label fx:id="errorContrasena" layoutX="266.0" layoutY="294.0" prefHeight="23.0" prefWidth="233.0" textFill="#f23726" />
             <Label layoutX="182.0" layoutY="317.0" prefHeight="25.0" prefWidth="65.0" text="Email:">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -42,12 +42,12 @@
             </Label>
             <TextField id="email" fx:id="email" layoutX="266.0" layoutY="317.0" prefHeight="25.0" prefWidth="233.0" />
             <TextField id="nombre" fx:id="nombre" layoutX="266.0" layoutY="373.0" prefHeight="25.0" prefWidth="233.0" />
-            <Button fx:id="boton_registrar" layoutX="286.0" layoutY="426.0" mnemonicParsing="false" onAction="#insertarUsuario" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: rgb(33, 168, 221);" text="Registrarme">
+            <Button fx:id="botonRegistrar" layoutX="286.0" layoutY="426.0" mnemonicParsing="false" onAction="#insertarUsuario" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: rgb(33, 168, 221);" text="Registrarme">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="enlace_login" layoutX="263.0" layoutY="455.0" onAction="#enlace_login" text="Volver a inicio de sesion">
+            <Hyperlink fx:id="enlaceLogin" layoutX="263.0" layoutY="455.0" onAction="#enlace_login" text="Volver a inicio de sesion">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="error_nombre" layoutX="269.0" layoutY="409.0" prefHeight="17.0" prefWidth="227.0" textFill="#f23726" />
+            <Label fx:id="errorNombre" layoutX="269.0" layoutY="409.0" prefHeight="17.0" prefWidth="227.0" textFill="#f23726" />
             <Label alignment="CENTER" layoutX="255.0" layoutY="172.0" prefHeight="17.0" prefWidth="176.0" text="Registro Usuario">
                <font>
                   <Font size="22.0" />

@@ -37,9 +37,9 @@ public class LoginController implements Initializable {
     @FXML
     private Button boton_acceder;
     @FXML
-    private Label error_usuario;
+    private Label errorUsuario;
     @FXML
-    private Label error_contrasena;
+    private Label errorContrasena;
     
 
     @Override
@@ -50,30 +50,29 @@ public class LoginController implements Initializable {
     @FXML
     private void acceder(ActionEvent event) throws IOException {
 
-        Usuario usuario1 = new Usuario();
-        
         String nombreUsuario = usuario.getText();
         String password = contrasena.getText();
         
         Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
 
         if(nombreUsuario.isEmpty() && password.isEmpty()){
-            error_usuario.setText("El nombre de usuario no es valido");
+            errorUsuario.setText("El nombre de usuario no es valido");
             usuario.setBorder(border);
             
-            error_contrasena.setText("La contraseña no es valida");
+            errorContrasena.setText("La contraseña no es valida");
             contrasena.setBorder(border);
             
         } else if (nombreUsuario.isEmpty()) {
-            error_usuario.setText("El nombre de usuario no es valido");
+            errorUsuario.setText("El nombre de usuario no es valido");
             usuario.setBorder(border);
             
         } else if (password.isEmpty()) {
-            error_contrasena.setText("La contraseña no es valida");
+            errorContrasena.setText("La contraseña no es valida");
             contrasena.setBorder(border);
             
         } else if(ControladorUsuarios.iniciarSesion(nombreUsuario, password)){
             
+            Usuario usuario1 = new Usuario();
             usuario1.setUsuario(nombreUsuario);
             
             Stage stage = (Stage) boton_acceder.getScene().getWindow();

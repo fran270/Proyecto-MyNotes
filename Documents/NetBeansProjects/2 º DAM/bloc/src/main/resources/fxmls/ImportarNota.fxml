@@ -35,15 +35,16 @@
       </Pane>
       <Pane layoutY="57.0" prefHeight="359.0" prefWidth="670.0">
          <children>
-            <Button fx:id="botonArchivo" layoutX="117.0" layoutY="53.0" mnemonicParsing="false" onAction="#seleccionarArchivo" prefHeight="31.0" prefWidth="359.0" text="Seleccione el archivo" />
+            <Button fx:id="botonArchivo" layoutX="117.0" layoutY="81.0" mnemonicParsing="false" onAction="#seleccionarArchivo" prefHeight="31.0" prefWidth="359.0" text="Seleccione el archivo" />
             <Label layoutX="117.0" layoutY="141.0" prefHeight="17.0" prefWidth="138.0" text="Formato" />
-            <MenuButton fx:id="formatoArchivo" contentDisplay="BOTTOM" layoutX="117.0" layoutY="167.0" mnemonicParsing="false" onMouseClicked="#seleccionarFormato" prefHeight="25.0" prefWidth="359.0" text="Seleccione el formato del archivo">
+            <MenuButton fx:id="formatoArchivo" contentDisplay="BOTTOM" layoutX="117.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="359.0" text="Seleccione el formato del archivo">
               <items>
                 <MenuItem fx:id="formato1" mnemonicParsing="false" style="-fx-max-width: 100px;" text="JSON" />
                 <MenuItem fx:id="formato2" mnemonicParsing="false" text="CSV" />
               </items>
             </MenuButton>
-            <Button fx:id="botonImportar" layoutX="487.0" layoutY="56.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: blue;" text="Importar Nota" textFill="WHITE" />
+            <Button fx:id="botonImportar" layoutX="486.0" layoutY="84.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: blue;" text="Importar Nota" textFill="WHITE" />
+            <Label layoutX="117.0" layoutY="24.0" prefHeight="25.0" prefWidth="192.0" text="Importar notas" />
          </children>
       </Pane>
    </children>

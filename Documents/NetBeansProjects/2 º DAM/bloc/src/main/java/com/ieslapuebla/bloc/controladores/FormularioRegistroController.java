@@ -28,10 +28,6 @@ import javafx.stage.Stage;
 public class FormularioRegistroController implements Initializable {
 
     @FXML
-    private Hyperlink enlace_login;
-    @FXML
-    private Button boton_registrar;
-    @FXML
     private TextField usuario;
     @FXML
     private PasswordField contrasena;
@@ -40,13 +36,17 @@ public class FormularioRegistroController implements Initializable {
     @FXML
     private TextField nombre;
     @FXML
-    private Label error_usuario;
+    private Label errorCorreo;
     @FXML
-    private Label error_contrasena;
+    private Label errorUsuario;
     @FXML
-    private Label error_correo;
+    private Label errorContrasena;
     @FXML
-    private Label error_nombre;
+    private Label errorNombre;
+    @FXML
+    private Button botonRegistrar;
+    @FXML
+    private Hyperlink enlaceLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,7 +56,7 @@ public class FormularioRegistroController implements Initializable {
     @FXML
     private void enlace_login(ActionEvent event) throws IOException {
 
-        Stage stage = (Stage) enlace_login.getScene().getWindow();
+        Stage stage = (Stage) enlaceLogin.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
 
         Scene scene = new Scene(root);
@@ -90,49 +90,49 @@ public class FormularioRegistroController implements Initializable {
         if (usu.isEmpty() || password.isEmpty() || correo.isEmpty() || nombreCompleto.isEmpty()) {
 
             if (usu.isEmpty()) {
-                error_usuario.setText("El campo usuario esta en blanco");
+                errorUsuario.setText("El campo usuario esta en blanco");
                 usuario.setBorder(border);
             } else if (!usu.matches(patronUsuario)) {
-                error_usuario.setText("El nombre de usuario solo puede contener "
+                errorUsuario.setText("El nombre de usuario solo puede contener "
                         + "letras y numeros");
                 usuario.setBorder(border);
             } else {
-                error_usuario.setText("");
+                errorUsuario.setText("");
                 usuario.setBorder(border1);
             }
 
             if (password.isEmpty()) {
-                error_contrasena.setText("El campo contraseña esta en blanco");
+                errorContrasena.setText("El campo contraseña esta en blanco");
                 contrasena.setBorder(border);
             } else if (!password.matches(patronContrasena) || (password.length() > 8 || password.length() < 8)) {
-                error_contrasena.setText("La contraseña tiene que tener 8 caracteres "
+                errorContrasena.setText("La contraseña tiene que tener 8 caracteres "
                         + " \nentre los cuales 1 letra mayuscula, minuscula, numero "
                         + " \ny 1 caracter especial");
                 contrasena.setBorder(border);
             } else {
-                error_contrasena.setText("");
+                errorContrasena.setText("");
                 contrasena.setBorder(border1);
             }
 
             if (correo.isEmpty()) {
-                error_correo.setText("El campo email esta en blanco");
+                errorCorreo.setText("El campo email esta en blanco");
                 email.setBorder(border);
             } else if (!correo.matches(patronCorreo)) {
-                error_correo.setText("El correo introducido no es valido");
+                errorCorreo.setText("El correo introducido no es valido");
                 email.setBorder(border);
             } else {
-                error_correo.setText("");
+                errorCorreo.setText("");
                 email.setBorder(border1);
             }
 
             if (nombreCompleto.isEmpty()) {
-                error_nombre.setText("El campo nombre esta en blanco");
+                errorNombre.setText("El campo nombre esta en blanco");
                 nombre.setBorder(border);
             } else if (!nombreCompleto.matches(patronNombre)) {
-                error_nombre.setText("El nombre solo puede contener letras");
+                errorNombre.setText("El nombre solo puede contener letras");
                 nombre.setBorder(border);
             } else {
-                error_nombre.setText("");
+                errorNombre.setText("");
                 nombre.setBorder(border1);
             }
 
@@ -140,12 +140,12 @@ public class FormularioRegistroController implements Initializable {
 
             if (ControladorUsuarios.comprobarUsuario(usu)) {
 
-                error_usuario.setText("Este usuario ya existe");
+                errorUsuario.setText("Este usuario ya existe");
                 usuario.setBorder(border);
                 
             } else if (ControladorUsuarios.comprobarCorreo(correo)) {
 
-                error_correo.setText("Este correo ya existe");
+                errorCorreo.setText("Este correo ya existe");
                 email.setBorder(border);
 
             } else {

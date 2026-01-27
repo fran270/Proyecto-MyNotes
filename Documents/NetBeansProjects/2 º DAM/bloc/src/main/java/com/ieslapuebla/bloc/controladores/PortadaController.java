@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 public class PortadaController implements Initializable {
 
-  
     @FXML
     private Label opcion1;
     @FXML

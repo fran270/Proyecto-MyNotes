@@ -30,37 +30,39 @@ import javafx.stage.Stage;
 
 public class InsertarNotaController implements Initializable {
 
-    @FXML
-    private Label cerrar;
+   
     @FXML
     private Label opcion1;
     @FXML
     private Label opcion2;
     @FXML
+    private Label opcion3;
+    @FXML
     private Label usuarioConectado;
+    @FXML
+    private Label cerrar;
     @FXML
     private TextField nombreNota;
     @FXML
-    private TextArea descripcionNota;
-    @FXML
-    private Button boton_guardar;
-    @FXML
     private Label errorNombreNota;
+    @FXML
+    private TextArea descripcionNota;
     @FXML
     private Label errorDescripcionNota;
     @FXML
     private TextField fecha;
     @FXML
-    private ImageView iconoInsertar;
+    private Button botonGuardar;
     @FXML
-    private Label opcion3;
-    
+    private ImageView iconoInsertar;
+   
     private ObservableList<Nota> notas;
     private String usuario;
     private String tituloNota;
     private String contenidoNota;
     private String fechaCreacion;
     private int usuarioId;
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -153,6 +155,4 @@ public class InsertarNotaController implements Initializable {
         Platform.exit();
         System.exit(0);
     }
-
-   
 }

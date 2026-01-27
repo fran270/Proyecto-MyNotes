@@ -42,6 +42,7 @@ public class ConexionBD {
         } catch (ClassNotFoundException e) {
 
             System.out.println("No se ha encontrado el driver de la base de datos");
+            System.out.printf("Error: %s",e.getMessage());
         }
 
         return conexion;

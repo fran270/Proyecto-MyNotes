@@ -254,13 +254,16 @@ public class NotasController implements Initializable {
             etiquetas.setText(etiqueta3.getText());
         });
     }
-
+    
+    @FXML
+    private void filtrarNotas(ActionEvent event) {
+        
+    }
+  
     @FXML
     private void cerrarSesion(MouseEvent event) {
 
         Platform.exit();
         System.exit(0);
     }
-
-   
 }

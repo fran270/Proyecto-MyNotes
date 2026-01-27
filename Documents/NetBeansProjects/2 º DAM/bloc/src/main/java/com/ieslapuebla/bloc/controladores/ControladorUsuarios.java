@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 public class ControladorUsuarios {
 
     //TABLA USUARIOS
+    
+    
     //Metodo para comprobar si el usuario que inicia sesion esta en la bd
     public static boolean iniciarSesion(String usuario, String contrasena) {
 

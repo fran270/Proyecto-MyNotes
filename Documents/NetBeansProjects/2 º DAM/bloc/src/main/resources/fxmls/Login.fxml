@@ -15,7 +15,7 @@
    <children>
       <Pane layoutX="26.0" layoutY="26.0" prefHeight="393.0" prefWidth="536.0">
          <children>
-            <Label fx:id="error_usuario" layoutX="218.0" layoutY="251.0" prefHeight="17.0" prefWidth="196.0" textFill="#f23726" />
+            <Label fx:id="errorUsuario" layoutX="218.0" layoutY="251.0" prefHeight="17.0" prefWidth="196.0" textFill="#f23726" />
             <Hyperlink fx:id="enlace_registro" layoutX="219.0" layoutY="356.0" onMouseClicked="#enlace_registrar" text="¿Estas registrado?">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
@@ -39,7 +39,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Label fx:id="error_contrasena" layoutX="218.0" layoutY="307.0" prefHeight="17.0" prefWidth="196.0" textFill="#f23726" />
+            <Label fx:id="errorContrasena" layoutX="218.0" layoutY="307.0" prefHeight="17.0" prefWidth="196.0" textFill="#f23726" />
             <Label alignment="CENTER" layoutX="186.0" layoutY="172.0" prefHeight="17.0" prefWidth="176.0" text="Iniciar Sesión">
                <font>
                   <Font size="22.0" />
