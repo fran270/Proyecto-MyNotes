@@ -122,14 +122,17 @@ public class InsertarNotaController implements Initializable {
         boolean notaExiste = ControladorNotas.comprobarNombreNota(tituloNota);
 
         if (tituloNota.isEmpty()) {
+            
             errorNombreNota.setText("Introduzca el nombre de la nota");
             nombreNota.setBorder(border);
        
         } else if (notaExiste) {
+            
             errorNombreNota.setText("El nombre de la nota ya existe");
             nombreNota.setBorder(border);
 
         } else if (contenidoNota.isEmpty()) {
+            
             errorDescripcionNota.setText("Introduzca el contenido de la nota");
             descripcionNota.setBorder(border);
             

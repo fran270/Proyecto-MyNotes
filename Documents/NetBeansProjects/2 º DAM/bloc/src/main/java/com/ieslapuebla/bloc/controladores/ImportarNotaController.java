@@ -62,7 +62,7 @@ public class ImportarNotaController implements Initializable {
 
         idUsuario = ControladorUsuarios.obtenerId(usuario);
 
-        importarNota("", "", "");
+        importarNota("", "");
     }
 
     @FXML
@@ -105,7 +105,7 @@ public class ImportarNotaController implements Initializable {
         String rutaArchivo = "";
 
         FileChooser archivo = new FileChooser();
-        archivo.setInitialDirectory(new File("C:/Users/Fran Crespo Crespo/Documents/ficheros sql"));
+        archivo.setInitialDirectory(new File("C:"));
 
         File archivoSeleccionado = archivo.showOpenDialog(new Stage());
 
@@ -116,10 +116,8 @@ public class ImportarNotaController implements Initializable {
             rutaArchivo = archivoSeleccionado.getPath();
 
             botonArchivo.setText(nombreArchivo);
-            String formato = seleccionarFormato();
-            System.out.println(formato);
             
-            importarNota(nombreArchivo, rutaArchivo, formato);
+            importarNota(nombreArchivo, rutaArchivo);
 
         } else {
 
@@ -147,7 +145,7 @@ public class ImportarNotaController implements Initializable {
         return formatoSeleccionado;
     }
 
-    private void importarNota(String nombreArchivo, String rutaArchivo, String formatoArchivo) {
+    private void importarNota(String nombreArchivo, String rutaArchivo) {
 
         botonImportar.setOnAction(e -> {
 

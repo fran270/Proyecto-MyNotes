@@ -44,19 +44,19 @@
             </MenuBar>
          </children>
       </Pane>
-      <Button fx:id="botonInsertar" layoutX="163.0" layoutY="511.0" mnemonicParsing="false" onAction="#crearNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(25, 135, 84);" text="Añadir Nota" textFill="WHITE" />
+      <Button fx:id="botonInsertar" layoutX="163.0" layoutY="511.0" mnemonicParsing="false" onAction="#crearNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(25, 135, 84);" text="Crear Nota" textFill="WHITE" />
       <Button fx:id="botonModificar" layoutX="366.0" layoutY="511.0" mnemonicParsing="false" onAction="#modificarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(255, 199, 32);" text="Modificar Nota" />
       <Button fx:id="botonEliminar" layoutX="572.0" layoutY="511.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(220, 53, 69);" text="Eliminar Nota" />
       <TableView fx:id="tabla" accessibleRole="TABLE_COLUMN" layoutX="68.0" layoutY="152.0" prefHeight="344.0" prefWidth="680.0">
         <columns>
           <TableColumn fx:id="nota" prefWidth="112.0" text="Nota" />
           <TableColumn fx:id="contenido" minWidth="9.0" prefWidth="198.0" text="Contenido" />
-            <TableColumn fx:id="fecha_creacion" minWidth="0.0" prefWidth="128.0" text="Fecha Creacion" />
-            <TableColumn fx:id="fecha_modificacion" prefWidth="127.0" text="Fecha Modificacion" />
+            <TableColumn fx:id="fechaCreacion" minWidth="0.0" prefWidth="128.0" text="Fecha Creacion" />
+            <TableColumn fx:id="fechaModificacion" prefWidth="127.0" text="Fecha Modificacion" />
             <TableColumn prefWidth="114.0" text="Etiquetas" />
         </columns>
       </TableView>
-      <TextField fx:id="buscador" layoutX="322.0" layoutY="105.0" prefHeight="25.0" prefWidth="371.0" />
+      <TextField fx:id="buscador" layoutX="322.0" layoutY="105.0" prefHeight="25.0" prefWidth="371.0" promptText="Introduzca el nombre o el contenido de la nota" />
       <Button fx:id="botonBuscar" layoutX="713.0" layoutY="105.0" mnemonicParsing="false" onAction="#filtrarNotas" prefHeight="25.0" prefWidth="95.0" text="Filtrar" />
       <MenuButton fx:id="etiquetas" layoutX="68.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#seleccionarEtiqueta" prefHeight="25.0" prefWidth="190.0" text="Seleccione una etiqueta:">
         <items>
@@ -67,5 +67,6 @@
       </MenuButton>
       <Label layoutX="68.0" layoutY="73.0" prefHeight="25.0" prefWidth="190.0" text="Etiquetas:" />
       <Label layoutX="322.0" layoutY="73.0" prefHeight="25.0" prefWidth="190.0" text="Buscador de notas:" />
+      <Label layoutX="322.0" layoutY="130.0" prefHeight="17.0" prefWidth="371.0" />
    </children>
 </AnchorPane>

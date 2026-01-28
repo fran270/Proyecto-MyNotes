@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
 public class ControladorNotas {
 
     //TABLA NOTAS
-    public static ObservableList<Nota> obtenerNota(ObservableList<Nota> nota, int idNota){
-        
+    public static ObservableList<Nota> obtenerNota(ObservableList<Nota> nota, int idNota) {
+
         String sql = "SELECT * FROM notas WHERE id_nota = ?";
 
         try (Connection conexion = conectarBD()) {
 
             try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
-                
+
                 consultaSelect.setInt(1, idNota);
 
                 ResultSet resultadoConsulta = consultaSelect.executeQuery();
@@ -31,7 +31,7 @@ public class ControladorNotas {
                     String contenido = resultadoConsulta.getString("descripcion");
                     String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
                     String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
-                    
+
                     nota.add(new Nota(idNota, nombreNota, contenido, fechaCreacion, fechaModificacion));
                 }
 
@@ -47,8 +47,7 @@ public class ControladorNotas {
 
         return nota;
     }
-    
-    
+
     public static int obtenerIdNota(int idNota) {
 
         String sql = "SELECT id_nota FROM notas WHERE id_nota = ?";
@@ -56,7 +55,7 @@ public class ControladorNotas {
         try (Connection conexion = conectarBD()) {
 
             try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
-                
+
                 consultaSelect.setInt(1, idNota);
 
                 ResultSet resultadoConsulta = consultaSelect.executeQuery();
@@ -80,9 +79,7 @@ public class ControladorNotas {
         return idNota;
     }
 
-    
     /*Operaciones CRUD*/
-    
     //Metodo para obtener las notas que ha creado el usuario
     public static boolean verNotas(ObservableList<Nota> notas, int idUsuario) {
 
@@ -192,7 +189,7 @@ public class ControladorNotas {
     //Metodo que elimina la nota a traves del id
     public static void eliminarNota(int idNota) {
 
-        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro que quieres borrar esta nota "+idNota+"?",
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro que quieres borrar esta nota " + idNota + "?",
                 "Mensaje de confirmacion", JOptionPane.YES_NO_CANCEL_OPTION);
 
         if (confirmacion == 0) {
@@ -260,6 +257,45 @@ public class ControladorNotas {
             System.out.printf("Error: %s", e.getMessage());
         }
 
+        return false;
+    }
+
+    public static boolean filtrarNota(ObservableList<Nota> notas, String nombreNota, int idUsuario) {
+
+        String sql = "SELECT * FROM notas WHERE nombre_nota = ? and usuarios_id = ?";
+
+        try (Connection conexion = conectarBD()) {
+
+            try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
+
+                consultaSelect.setString(1, nombreNota);
+                consultaSelect.setInt(2, idUsuario);
+
+                ResultSet resultadoConsulta = consultaSelect.executeQuery();
+                
+                while (resultadoConsulta.next()) {
+
+                    int idNota = resultadoConsulta.getInt("id_nota");
+                    String nota = resultadoConsulta.getString("nombre_nota");
+                    String contenido = resultadoConsulta.getString("descripcion");
+                    String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
+                    String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
+
+                    notas.add(new Nota(idNota, nota, contenido, fechaCreacion, fechaModificacion));
+                    
+                    return true;
+                }
+                  
+            } catch(SQLException e){
+                System.out.println("Error al ejecutar la consulta");
+                System.out.printf("ERROR: %s",e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en la conexion con la bd");
+            System.out.printf("Error: %s", e.getMessage());
+        }
+        
         return false;
     }
 
