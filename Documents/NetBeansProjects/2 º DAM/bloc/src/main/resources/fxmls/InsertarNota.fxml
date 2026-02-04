@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="762.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.InsertarNotaController">
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="770.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.InsertarNotaController">
    <children>
       <Label layoutX="143.0" layoutY="121.0" prefHeight="31.0" prefWidth="121.0" text="Nombre de la nota:">
          <font>
@@ -21,22 +23,22 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextArea id="descripcionNota" fx:id="descripcionNota" layoutX="288.0" layoutY="182.0" prefHeight="172.0" prefWidth="283.0" />
-      <Button id="boton_guardar" fx:id="botonGuardar" layoutX="315.0" layoutY="425.0" mnemonicParsing="false" onAction="#guardarNota" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: rgb(25, 135, 84);" text="Guardar" textFill="WHITE">
+      <TextArea id="descripcionNota" fx:id="descripcionNota" layoutX="288.0" layoutY="186.0" prefHeight="152.0" prefWidth="283.0" />
+      <Button id="boton_guardar" fx:id="botonGuardar" layoutX="288.0" layoutY="466.0" mnemonicParsing="false" onAction="#guardarNota" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: rgb(25, 135, 84);" text="Guardar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="68.0" prefHeight="40.0" prefWidth="220.0" text="INSERTAR NOTA">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="326.0" layoutY="68.0" prefHeight="40.0" prefWidth="170.0" text="INSERTAR NOTA">
          <font>
             <Font name="Dubai Bold" size="19.0" />
          </font>
       </Label>
-      <Label fx:id="errorNombreNota" layoutX="288.0" layoutY="152.0" prefHeight="17.0" prefWidth="283.0" textFill="#f23726" />
-      <Label fx:id="errorDescripcionNota" layoutX="288.0" layoutY="354.0" prefHeight="17.0" prefWidth="283.0" textFill="#f23726" />
-      <Pane layoutX="-1.0" prefHeight="58.0" prefWidth="762.0" style="-fx-background-color: rgb(63, 188, 192);">
+      <Label fx:id="errorNombreNota" layoutX="288.0" layoutY="159.0" prefHeight="17.0" prefWidth="283.0" textFill="#f23726" />
+      <Label fx:id="errorDescripcionNota" layoutX="288.0" layoutY="344.0" prefHeight="17.0" prefWidth="283.0" textFill="#f23726" />
+      <Pane layoutX="-1.0" prefHeight="58.0" prefWidth="770.0" style="-fx-background-color: rgb(63, 188, 192);">
          <children>
             <Label fx:id="cerrar" layoutX="653.0" layoutY="19.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="95.0" text="Cerrar Sesion" />
-            <Label fx:id="opcion1" layoutX="269.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="89.0" text="INICIO">
+            <Label fx:id="opcion1" layoutX="265.0" layoutY="19.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="70.0" text="INICIO">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
@@ -44,7 +46,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="539.0" layoutY="14.0" prefHeight="31.0" prefWidth="102.0" />
+            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="539.0" layoutY="14.0" prefHeight="31.0" prefWidth="102.0" textFill="#070606" />
             <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="opcion3" layoutX="433.0" layoutY="19.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA">
                <font>
@@ -53,20 +55,33 @@
             </Label>
          </children>
       </Pane>
-      <Label layoutX="138.0" layoutY="378.0" prefHeight="31.0" prefWidth="131.0" text="Fecha de creacion:">
+      <Label layoutX="138.0" layoutY="363.0" prefHeight="31.0" prefWidth="131.0" text="Fecha de creacion:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField id="nombreNota" fx:id="fecha" editable="false" layoutX="288.0" layoutY="381.0" prefHeight="25.0" prefWidth="283.0" />
+      <TextField id="nombreNota" fx:id="fecha" editable="false" layoutX="288.0" layoutY="366.0" prefHeight="25.0" prefWidth="283.0" />
       <ImageView fx:id="iconoInsertar" fitHeight="40.0" fitWidth="43.0" layoutX="275.0" layoutY="68.0" pickOnBounds="true">
          <image>
             <Image url="@../images/favicon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="337.0" layoutY="425.0">
+      <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="305.0" layoutY="466.0">
          <image>
             <Image url="@../images/icono%20guardar.png" />
          </image>
       </ImageView>
+      <Label layoutX="138.0" layoutY="408.0" prefHeight="31.0" prefWidth="131.0" text="Etiqueta:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <MenuButton fx:id="etiqueta" contentDisplay="BOTTOM" layoutX="288.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="283.0" text="Seleccione una etiqueta">
+         <items>
+            <MenuItem fx:id="formato1" mnemonicParsing="false" style="-fx-max-width: 100px;" text="#tareaPendiente" />
+            <MenuItem fx:id="formato2" mnemonicParsing="false" text="#musica" />
+            <MenuItem mnemonicParsing="false" text="#trabajo" />
+            <MenuItem mnemonicParsing="false" text="#importante" />
+         </items>
+      </MenuButton>
    </children>
 </AnchorPane>

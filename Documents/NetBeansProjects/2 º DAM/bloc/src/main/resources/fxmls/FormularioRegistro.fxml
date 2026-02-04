@@ -47,7 +47,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="enlaceLogin" layoutX="263.0" layoutY="455.0" onAction="#enlace_login" text="Volver a inicio de sesion">
+            <Hyperlink fx:id="enlaceLogin" layoutX="263.0" layoutY="455.0" onAction="#enlaceLogin" text="Volver a inicio de sesion">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>

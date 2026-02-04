@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -62,6 +64,12 @@ public class InsertarNotaController implements Initializable {
     private String contenidoNota;
     private String fechaCreacion;
     private int usuarioId;
+    @FXML
+    private MenuButton etiqueta;
+    @FXML
+    private MenuItem formato1;
+    @FXML
+    private MenuItem formato2;
    
 
     @Override
@@ -117,8 +125,7 @@ public class InsertarNotaController implements Initializable {
         usuarioId = ControladorUsuarios.obtenerId(usuario);
 
         Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
-        //Border border1 = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
-
+      
         boolean notaExiste = ControladorNotas.comprobarNombreNota(tituloNota);
 
         if (tituloNota.isEmpty()) {

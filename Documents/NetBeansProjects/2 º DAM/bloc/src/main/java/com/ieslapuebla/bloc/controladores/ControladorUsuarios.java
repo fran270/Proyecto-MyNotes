@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 public class ControladorUsuarios {
 
     //TABLA USUARIOS
-    
-    
     //Metodo para comprobar si el usuario que inicia sesion esta en la bd
     public static boolean iniciarSesion(String usuario, String contrasena) {
 
@@ -34,7 +32,7 @@ public class ControladorUsuarios {
                         int id = resultadoConsulta.getInt("id");
                         String usu = resultadoConsulta.getString("usuario");
                         String password = resultadoConsulta.getString("contrasena");
-                       
+
                     }
 
                     return true;
@@ -118,6 +116,69 @@ public class ControladorUsuarios {
             System.out.printf("ERROR: %s", e.getMessage());
         }
 
+    }
+
+    //Metodo para modificar usuario
+    public static void modificarUsuario(Usuario usuarioModificar) {
+
+        String sql = "UPDATE usuarios SET usuario = ?, contrasena = ?, email = ?, nombre = ? WHERE id = ?";
+
+        try (Connection conexion = conectarBD()) {
+
+            try (PreparedStatement consultaUpdate = conexion.prepareStatement(sql)) {
+
+                consultaUpdate.setString(1, usuarioModificar.getUsuario());
+                consultaUpdate.setString(2, usuarioModificar.getContrasena());
+                consultaUpdate.setString(3, usuarioModificar.getCorreo());
+                consultaUpdate.setString(4, usuarioModificar.getNombre());
+
+                int resultadoConsulta = consultaUpdate.executeUpdate();
+
+                if (resultadoConsulta > 0) {
+                    JOptionPane.showMessageDialog(null, "Los cambios se han guardado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha podido guardar los cambios", null, JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Ha ocurrido un error al realizar la consulta");
+                System.out.printf("ERROR: %s", e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en la conexion con la bd");
+            System.out.printf("ERROR: %s", e.getMessage());
+        }
+    }
+
+    //Metodo que se encarga de eliminar un usuario
+    public static void eliminarUsuario(int id) {
+
+        String sql = "DELETE FROM usuarios WHERE id = ?";
+
+        try (Connection conexion = conectarBD()) {
+            
+            try(PreparedStatement consultaDelete = conexion.prepareStatement(sql)){
+                
+                consultaDelete.setInt(1, id);
+                
+                int resultadoConsulta = consultaDelete.executeUpdate();
+                
+                if(resultadoConsulta > 0){
+                    JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha podido borrar el usuario", "Error de borrado de usuario", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            } catch(SQLException e){
+                System.out.println("Ha ocurrido un error en la consulta");
+                System.out.printf("Error: %s",e.getMessage());
+            }
+
+        } catch(SQLException e){
+            System.out.println("Error en la conexion con la bd");
+            System.out.printf("ERROR: %s", e.getMessage());
+        }
     }
 
     //Metodo para comprobar si el usuario existe en la bd

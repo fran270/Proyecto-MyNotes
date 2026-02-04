@@ -260,7 +260,7 @@ public class ControladorNotas {
         return false;
     }
 
-    public static boolean filtrarNota(ObservableList<Nota> notas, String nombreNota, int idUsuario) {
+    public static void filtrarNota(ObservableList<Nota> notas, String nombreNota, int idUsuario) {
 
         String sql = "SELECT * FROM notas WHERE nombre_nota = ? and usuarios_id = ?";
 
@@ -269,6 +269,46 @@ public class ControladorNotas {
             try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
 
                 consultaSelect.setString(1, nombreNota);
+                consultaSelect.setInt(2, idUsuario);
+
+                ResultSet resultadoConsulta = consultaSelect.executeQuery();
+                
+                while (resultadoConsulta.next()) {
+
+                    int idNota = resultadoConsulta.getInt("id_nota");
+                    String nota = resultadoConsulta.getString("nombre_nota");
+                    String contenido = resultadoConsulta.getString("descripcion");
+                    String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
+                    String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
+                    
+                    notas.add(new Nota(idNota, nota, contenido, fechaCreacion, fechaModificacion));
+                    
+                    //return true;
+                }
+                  
+            } catch(SQLException e){
+                System.out.println("Error al ejecutar la consulta");
+                System.out.printf("ERROR: %s",e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en la conexion con la bd");
+            System.out.printf("Error: %s", e.getMessage());
+        }
+        
+        //return false;
+    }
+
+    
+    /*public static boolean filtrarNota(ObservableList<Nota> notas, String contenidoNota, int idUsuario) {
+
+        String sql = "SELECT * FROM notas WHERE descripcion = ? and usuarios_id = ?";
+
+        try (Connection conexion = conectarBD()) {
+
+            try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
+
+                consultaSelect.setString(1, contenidoNota);
                 consultaSelect.setInt(2, idUsuario);
 
                 ResultSet resultadoConsulta = consultaSelect.executeQuery();
@@ -297,6 +337,5 @@ public class ControladorNotas {
         }
         
         return false;
-    }
-
+    }*/
 }

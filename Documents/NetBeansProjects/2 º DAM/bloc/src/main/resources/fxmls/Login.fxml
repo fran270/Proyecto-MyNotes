@@ -16,7 +16,7 @@
       <Pane layoutX="26.0" layoutY="26.0" prefHeight="393.0" prefWidth="536.0">
          <children>
             <Label fx:id="errorUsuario" layoutX="218.0" layoutY="251.0" prefHeight="17.0" prefWidth="196.0" textFill="#f23726" />
-            <Hyperlink fx:id="enlace_registro" layoutX="219.0" layoutY="356.0" onMouseClicked="#enlace_registrar" text="¿Estas registrado?">
+            <Hyperlink fx:id="enlaceRegistro" layoutX="219.0" layoutY="356.0" onMouseClicked="#enlaceRegistro" text="¿Estas registrado?">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Hyperlink>
@@ -35,7 +35,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Button id="boton_acceder" fx:id="boton_acceder" layoutX="218.0" layoutY="324.0" mnemonicParsing="false" onAction="#acceder" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: rgb(33, 168, 221);" text="Acceder">
+            <Button id="boton_acceder" fx:id="botonAcceder" layoutX="218.0" layoutY="324.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: rgb(33, 168, 221);" text="Acceder">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>

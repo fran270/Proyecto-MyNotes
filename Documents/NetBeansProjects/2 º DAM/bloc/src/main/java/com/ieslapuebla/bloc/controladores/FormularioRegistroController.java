@@ -54,7 +54,7 @@ public class FormularioRegistroController implements Initializable {
     }
 
     @FXML
-    private void enlace_login(ActionEvent event) throws IOException {
+    private void enlaceLogin(ActionEvent event) throws IOException {
 
         Stage stage = (Stage) enlaceLogin.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Login.fxml"));
@@ -65,8 +65,7 @@ public class FormularioRegistroController implements Initializable {
         stage.getIcons().add(new Image(AbrirVentanas.class.getResource("/images/iniciar-sesion.png").toExternalForm()));
         stage.show();
     }
-
-
+   
     @FXML
     private void insertarUsuario(ActionEvent event) {
 
@@ -85,7 +84,7 @@ public class FormularioRegistroController implements Initializable {
 
         Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
         Border border1 = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
-        
+
         //Validaciones campos formulario
         if (usu.isEmpty() || password.isEmpty() || correo.isEmpty() || nombreCompleto.isEmpty()) {
 
@@ -142,7 +141,7 @@ public class FormularioRegistroController implements Initializable {
 
                 errorUsuario.setText("Este usuario ya existe");
                 usuario.setBorder(border);
-                
+
             } else if (ControladorUsuarios.comprobarCorreo(correo)) {
 
                 errorCorreo.setText("Este correo ya existe");
@@ -151,7 +150,7 @@ public class FormularioRegistroController implements Initializable {
             } else {
 
                 Usuario nuevoUsuario = new Usuario(usu, password, correo, nombreCompleto);
-                
+
                 ControladorUsuarios.insertarUsuario(nuevoUsuario);
 
                 //Limpia los campos del formulario
@@ -160,7 +159,7 @@ public class FormularioRegistroController implements Initializable {
 
         }
     }
-    
+
     private void limpiarCampos() {
 
         usuario.clear();

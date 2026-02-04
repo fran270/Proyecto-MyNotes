@@ -33,7 +33,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutY="57.0" prefHeight="359.0" prefWidth="670.0">
+      <Pane layoutX="-2.0" layoutY="57.0" prefHeight="359.0" prefWidth="670.0" style="-fx-background-color: white;">
          <children>
             <Button fx:id="botonArchivo" layoutX="117.0" layoutY="81.0" mnemonicParsing="false" onAction="#seleccionarArchivo" prefHeight="31.0" prefWidth="359.0" text="Seleccione el archivo" />
             <Label layoutX="117.0" layoutY="141.0" prefHeight="17.0" prefWidth="138.0" text="Formato" />
@@ -44,7 +44,10 @@
               </items>
             </MenuButton>
             <Button fx:id="botonImportar" layoutX="486.0" layoutY="84.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: blue;" text="Importar Nota" textFill="WHITE" />
-            <Label layoutX="117.0" layoutY="24.0" prefHeight="25.0" prefWidth="192.0" text="Importar notas" />
+            <Label alignment="CENTER" layoutX="229.0" layoutY="27.0" prefHeight="25.0" prefWidth="192.0" text="IMPORTAR NOTA" textFill="#070606">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
          </children>
       </Pane>
    </children>

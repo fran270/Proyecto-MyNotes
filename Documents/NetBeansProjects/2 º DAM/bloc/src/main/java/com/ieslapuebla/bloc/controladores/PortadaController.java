@@ -27,7 +27,6 @@ public class PortadaController implements Initializable {
     private Label opcion3;
     @FXML
     private Label usuarioConectado;
-  
     @FXML
     private MenuItem op1;
     @FXML

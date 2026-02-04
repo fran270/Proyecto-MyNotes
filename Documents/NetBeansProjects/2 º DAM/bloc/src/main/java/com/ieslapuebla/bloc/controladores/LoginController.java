@@ -33,14 +33,13 @@ public class LoginController implements Initializable {
     @FXML
     private TextField contrasena;
     @FXML
-    private Hyperlink enlace_registro;
-    @FXML
-    private Button boton_acceder;
-    @FXML
     private Label errorUsuario;
     @FXML
     private Label errorContrasena;
-    
+    @FXML
+    private Button botonAcceder;
+    @FXML
+    private Hyperlink enlaceRegistro;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,52 +47,55 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void acceder(ActionEvent event) throws IOException {
+    private void iniciarSesion(ActionEvent event) throws IOException {
 
         String nombreUsuario = usuario.getText();
         String password = contrasena.getText();
-        
+
         Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
 
-        if(nombreUsuario.isEmpty() && password.isEmpty()){
+        if (nombreUsuario.isEmpty() && password.isEmpty()) {
             errorUsuario.setText("El nombre de usuario no es valido");
             usuario.setBorder(border);
-            
+
             errorContrasena.setText("La contraseña no es valida");
             contrasena.setBorder(border);
-            
+
         } else if (nombreUsuario.isEmpty()) {
             errorUsuario.setText("El nombre de usuario no es valido");
             usuario.setBorder(border);
-            
+
         } else if (password.isEmpty()) {
             errorContrasena.setText("La contraseña no es valida");
             contrasena.setBorder(border);
-            
-        } else if(ControladorUsuarios.iniciarSesion(nombreUsuario, password)){
-            
+
+        } else if (ControladorUsuarios.iniciarSesion(nombreUsuario, password)) {
+
             Usuario usuario1 = new Usuario();
             usuario1.setUsuario(nombreUsuario);
             
-            Stage stage = (Stage) boton_acceder.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Portada.fxml"));
+            //if(rol == "admin"){
+                // me dirige a la pantalla de inicio del administrador
+            //}
 
+            Stage stage = (Stage) botonAcceder.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Portada.fxml"));
+            
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Bloc de Notas");
             stage.getIcons().add(new Image(PortadaController.class.getResource("/images/favicon.png").toExternalForm()));
             stage.show();
-          
+
         } else {
-            JOptionPane.showMessageDialog(null, "No estas registrado", "Error de autenticacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No estas registrado", "Usuario no registrado", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
 
     @FXML
-    private void enlace_registrar(MouseEvent event) throws IOException {
+    private void enlaceRegistro(MouseEvent event) throws IOException {
 
-        Stage stage = (Stage) enlace_registro.getScene().getWindow();
+        Stage stage = (Stage) enlaceRegistro.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/FormularioRegistro.fxml"));
 
         Scene scene = new Scene(root);
@@ -102,5 +104,4 @@ public class LoginController implements Initializable {
         stage.getIcons().add(new Image(AbrirVentanas.class.getResource("/images/registro.png").toExternalForm()));
         stage.show();
     }
-
 }

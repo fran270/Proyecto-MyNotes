@@ -150,19 +150,22 @@ public class ImportarNotaController implements Initializable {
         botonImportar.setOnAction(e -> {
 
             if (nombreArchivo.equals("")) {
-                JOptionPane.showMessageDialog(null, "No has seleccionado ningun fichero", "Error de seleccion de fichero", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No has seleccionado ningun fichero", "Fichero no seleccionado", JOptionPane.ERROR_MESSAGE);
             } else {
                 // Extraer la extension del fichero
                 String[] array = nombreArchivo.split("\\.");
 
                 // Guardamos la extension en esta variable
                 String extension = array[1];
+                
+                // Creamos un array para guardar los formatos del archivo validos
+                String[] formatos = {"json", "csv"};
 
-                if (extension.equalsIgnoreCase("json")) {
+                if (extension.equalsIgnoreCase(formatos[0])) {
 
                     importarFicheroJson(rutaArchivo);
 
-                } else if (extension.equalsIgnoreCase("csv")) {
+                } else if (extension.equalsIgnoreCase(formatos[1])) {
 
                     importarFicheroCSV(rutaArchivo);
 
