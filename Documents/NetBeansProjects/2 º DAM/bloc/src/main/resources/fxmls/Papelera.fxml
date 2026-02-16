@@ -32,14 +32,15 @@
       <Pane layoutY="49.0" prefHeight="382.0" prefWidth="660.0">
          <children>
             <Label layoutX="62.0" layoutY="31.0" prefHeight="31.0" prefWidth="204.0" text="PAPELERA DE RECICLAJE" />
-            <Button fx:id="botonRestaurar" layoutX="510.0" layoutY="111.0" mnemonicParsing="false" onAction="#restaurarNota" prefHeight="18.0" prefWidth="109.0" style="-fx-background-color: #09519e;" text="Restaurar" />
-            <TableView fx:id="notasPapelera" layoutX="56.0" layoutY="73.0" prefHeight="252.0" prefWidth="447.0">
+            <Button fx:id="botonRestaurar" layoutX="510.0" layoutY="111.0" mnemonicParsing="false" onAction="#restaurarNota" prefHeight="18.0" prefWidth="109.0" style="-fx-background-color: #09519e;" text="Restaurar" textFill="#070606" />
+            <TableView fx:id="notasPapelera" layoutX="33.0" layoutY="73.0" prefHeight="252.0" prefWidth="447.0">
               <columns>
-                  <TableColumn prefWidth="214.0" text="Nota" />
-                <TableColumn prefWidth="232.0" text="Fecha Modificacion" />
+                  <TableColumn fx:id="nombreNota" prefWidth="121.0" text="Nota" />
+                <TableColumn fx:id="fechaModificacion" prefWidth="161.0" text="Fecha Modificacion" />
+                  <TableColumn prefWidth="164.0" text="Fecha Eliminacion" />
               </columns>
             </TableView>
-            <Button fx:id="botonEliminar" layoutX="510.0" layoutY="157.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="18.0" prefWidth="109.0" style="-fx-background-color: red;" text="Eliminar" />
+            <Button fx:id="botonEliminar" layoutX="510.0" layoutY="157.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="18.0" prefWidth="109.0" style="-fx-background-color: red;" text="Eliminar" textFill="#070606" />
          </children>
       </Pane>
    </children>

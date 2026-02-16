@@ -34,9 +34,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="NOTAS">
                   <items>
-                        <MenuItem fx:id="op1" mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
+                        <MenuItem mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
                         <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
-                        <MenuItem fx:id="notasFijadas" mnemonicParsing="false" text="Notas Fijadas" />
+                        <MenuItem mnemonicParsing="false" onAction="#notasImportantes" text="Notas Importantes" />
                         <MenuItem mnemonicParsing="false" text="Notas Archivadas" />
                   </items>
                 </Menu>
@@ -45,8 +45,8 @@
          </children>
       </Pane>
       <Button fx:id="botonInsertar" layoutX="163.0" layoutY="511.0" mnemonicParsing="false" onAction="#crearNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(25, 135, 84);" text="Crear Nota" textFill="#070606" />
-      <Button fx:id="botonModificar" layoutX="366.0" layoutY="511.0" mnemonicParsing="false" onAction="#modificarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(255, 199, 32);" text="Modificar Nota" textFill="#070606" />
-      <Button fx:id="botonEliminar" layoutX="572.0" layoutY="511.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(220, 53, 69);" text="Eliminar Nota" textFill="#070606" />
+      <Button fx:id="botonModificar" layoutX="343.0" layoutY="511.0" mnemonicParsing="false" onAction="#modificarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(255, 199, 32);" text="Modificar Nota" textFill="#070606" />
+      <Button fx:id="botonEliminar" layoutX="512.0" layoutY="511.0" mnemonicParsing="false" onAction="#eliminarNota" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: rgb(220, 53, 69);" text="Mover a la papelera" textFill="#070606" />
       <TableView fx:id="tabla" accessibleRole="TABLE_COLUMN" layoutX="68.0" layoutY="152.0" prefHeight="344.0" prefWidth="680.0">
         <columns>
           <TableColumn fx:id="nota" prefWidth="112.0" text="Nota" />
@@ -69,6 +69,6 @@
       <Label layoutX="68.0" layoutY="73.0" prefHeight="25.0" prefWidth="190.0" text="Etiquetas:" />
       <Label layoutX="322.0" layoutY="73.0" prefHeight="25.0" prefWidth="190.0" text="Buscador de notas:" />
       <Label layoutX="322.0" layoutY="130.0" prefHeight="17.0" prefWidth="371.0" />
-      <Button fx:id="botonExportar" layoutX="713.0" layoutY="511.0" mnemonicParsing="false" onAction="#exportarNota" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: rgb(161, 161, 161);" text="Exportar" textFill="#070606" />
+      <Button fx:id="botonExportar" layoutX="662.0" layoutY="511.0" mnemonicParsing="false" onAction="#exportarNota" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: rgb(161, 161, 161);" text="Exportar" textFill="#070606" />
    </children>
 </AnchorPane>

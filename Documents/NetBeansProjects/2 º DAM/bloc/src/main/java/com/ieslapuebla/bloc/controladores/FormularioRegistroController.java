@@ -24,6 +24,7 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class FormularioRegistroController implements Initializable {
 
@@ -75,88 +76,94 @@ public class FormularioRegistroController implements Initializable {
         String correo = email.getText();
         String nombreCompleto = nombre.getText();
 
-        //Variables donde se almacena el patron de diseño que debe
-        //cumplir los datos introducidos en los campos del formulario
+        /*Variables donde se almacena el patron de diseño que debe
+        cumplir los datos introducidos en los campos del formulario*/
         String patronUsuario = "[a-zA-Z0-9]+";
         String patronContrasena = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&*!])[A-Za-z\\d@#$%^&*!]{8,}";
         String patronCorreo = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}";
         String patronNombre = "[a-zA-Z ]+";//^[A-Za-z ]*$
 
-        Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
-        Border border1 = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
+        Border bordeRojo = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
+        Border bordeVerde = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
 
         //Validaciones campos formulario
         if (usu.isEmpty() || password.isEmpty() || correo.isEmpty() || nombreCompleto.isEmpty()) {
 
             if (usu.isEmpty()) {
                 errorUsuario.setText("El campo usuario esta en blanco");
-                usuario.setBorder(border);
+                usuario.setBorder(bordeRojo);
             } else if (!usu.matches(patronUsuario)) {
                 errorUsuario.setText("El nombre de usuario solo puede contener "
                         + "letras y numeros");
-                usuario.setBorder(border);
+                usuario.setBorder(bordeRojo);
+            } else if (ControladorUsuarios.comprobarUsuario(usu)){
+                errorUsuario.setText("Este usuario ya existe");
+                usuario.setBorder(bordeRojo);
             } else {
                 errorUsuario.setText("");
-                usuario.setBorder(border1);
+                usuario.setBorder(bordeVerde);
             }
 
             if (password.isEmpty()) {
                 errorContrasena.setText("El campo contraseña esta en blanco");
-                contrasena.setBorder(border);
+                contrasena.setBorder(bordeRojo);
             } else if (!password.matches(patronContrasena) || (password.length() > 8 || password.length() < 8)) {
                 errorContrasena.setText("La contraseña tiene que tener 8 caracteres "
                         + " \nentre los cuales 1 letra mayuscula, minuscula, numero "
                         + " \ny 1 caracter especial");
-                contrasena.setBorder(border);
+                contrasena.setBorder(bordeRojo);
             } else {
                 errorContrasena.setText("");
-                contrasena.setBorder(border1);
+                contrasena.setBorder(bordeVerde);
             }
 
             if (correo.isEmpty()) {
                 errorCorreo.setText("El campo email esta en blanco");
-                email.setBorder(border);
+                email.setBorder(bordeRojo);
             } else if (!correo.matches(patronCorreo)) {
                 errorCorreo.setText("El correo introducido no es valido");
-                email.setBorder(border);
+                email.setBorder(bordeRojo);
+            } else if (ControladorUsuarios.comprobarCorreo(correo)){
+                errorCorreo.setText("Este correo ya existe");
+                email.setBorder(bordeRojo);
             } else {
                 errorCorreo.setText("");
-                email.setBorder(border1);
+                email.setBorder(bordeVerde);
             }
 
             if (nombreCompleto.isEmpty()) {
                 errorNombre.setText("El campo nombre esta en blanco");
-                nombre.setBorder(border);
+                nombre.setBorder(bordeRojo);
             } else if (!nombreCompleto.matches(patronNombre)) {
                 errorNombre.setText("El nombre solo puede contener letras");
-                nombre.setBorder(border);
+                nombre.setBorder(bordeRojo);
             } else {
                 errorNombre.setText("");
-                nombre.setBorder(border1);
+                nombre.setBorder(bordeVerde);
             }
 
         } else {
 
-            if (ControladorUsuarios.comprobarUsuario(usu)) {
+            /*if (ControladorUsuarios.comprobarUsuario(usu)) {
 
                 errorUsuario.setText("Este usuario ya existe");
-                usuario.setBorder(border);
+                usuario.setBorder(bordeRojo);
 
             } else if (ControladorUsuarios.comprobarCorreo(correo)) {
 
                 errorCorreo.setText("Este correo ya existe");
-                email.setBorder(border);
+                email.setBorder(bordeRojo);
 
-            } else {
+            } else {*/
 
-                Usuario nuevoUsuario = new Usuario(usu, password, correo, nombreCompleto);
+                String contrasenaEncriptada = BCrypt.hashpw(password, BCrypt.gensalt());
+                
+                Usuario nuevoUsuario = new Usuario(usu, contrasenaEncriptada, correo, nombreCompleto);
 
                 ControladorUsuarios.insertarUsuario(nuevoUsuario);
 
                 //Limpia los campos del formulario
                 limpiarCampos();
-            }
-
         }
     }
 

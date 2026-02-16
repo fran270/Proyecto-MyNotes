@@ -8,9 +8,10 @@ public class Nota {
     private String contenido;
     private String fechaCreacion;
     private String fechaModificacion;
-    private int idUsuario;
     private String etiqueta;
-
+    private int idUsuario;
+    
+    
     //Constructor de la clase
     public Nota(int idNota, String nombreNota, String contenido, String fechaCreacion, String fechaModificacion) {
 
@@ -21,12 +22,13 @@ public class Nota {
         this.fechaModificacion = fechaModificacion;
     }
     
-    public Nota(String nombreNota, String contenido, String fechaCreacion, String fechaModificacion, int idUsuario) {
+    public Nota(String nombreNota, String contenido, String fechaCreacion, String fechaModificacion, String etiqueta, int idUsuario) {
 
         this.nombreNota = nombreNota;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
+        this.etiqueta = etiqueta;
         this.idUsuario = idUsuario;
     }
     

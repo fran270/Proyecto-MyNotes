@@ -118,6 +118,7 @@ public class ExportarNotaController {
                 JOptionPane.showMessageDialog(null, "No has introducido el formato del fichero", null, JOptionPane.ERROR_MESSAGE);
             } else {
                 extension = datos[1];
+                
                 //Comprobamos que la extension sea valida
                 switch (extension) {
 

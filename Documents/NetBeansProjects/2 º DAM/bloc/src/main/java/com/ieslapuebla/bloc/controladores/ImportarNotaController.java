@@ -223,10 +223,10 @@ public class ImportarNotaController implements Initializable {
             String fechaModificacion = datosNota[3];
 
             //Crear un objeto Nota y que reciba los datos como parametros
-            Nota notaImportar = new Nota(nombreNota, contenidoNota, fechaCreacion, fechaModificacion, idUsuario);
+            /*Nota notaImportar = new Nota(nombreNota, contenidoNota, fechaCreacion, fechaModificacion, idUsuario);
 
             //invocar al metodo que inserta la nota en la bd
-            ControladorNotas.insertarNota(notaImportar);
+            ControladorNotas.insertarNota(notaImportar);*/
 
             JOptionPane.showMessageDialog(null, "La nota se ha importado correctamente");
 
@@ -255,9 +255,9 @@ public class ImportarNotaController implements Initializable {
             String fechaCreacion = datosNota[2];
             String fechaModificacion = datosNota[3];
 
-            Nota notaImportar = new Nota(nombreNota, contenido, fechaCreacion, fechaModificacion, idUsuario);
+            /*Nota notaImportar = new Nota(nombreNota, contenido, fechaCreacion, fechaModificacion, idUsuario);
 
-            ControladorNotas.insertarNota(notaImportar);
+            ControladorNotas.insertarNota(notaImportar);*/
 
             JOptionPane.showMessageDialog(null, "La nota se ha importado correctamente");
 

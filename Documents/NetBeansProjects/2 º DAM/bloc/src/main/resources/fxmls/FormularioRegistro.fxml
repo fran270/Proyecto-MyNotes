@@ -42,12 +42,12 @@
             </Label>
             <TextField id="email" fx:id="email" layoutX="266.0" layoutY="317.0" prefHeight="25.0" prefWidth="233.0" />
             <TextField id="nombre" fx:id="nombre" layoutX="266.0" layoutY="373.0" prefHeight="25.0" prefWidth="233.0" />
-            <Button fx:id="botonRegistrar" layoutX="286.0" layoutY="426.0" mnemonicParsing="false" onAction="#insertarUsuario" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: rgb(33, 168, 221);" text="Registrarme">
+            <Button fx:id="botonRegistrar" layoutX="286.0" layoutY="432.0" mnemonicParsing="false" onAction="#insertarUsuario" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: rgb(33, 168, 221);" text="Registrarme">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="enlaceLogin" layoutX="263.0" layoutY="455.0" onAction="#enlaceLogin" text="Volver a inicio de sesion">
+            <Hyperlink fx:id="enlaceLogin" layoutX="263.0" layoutY="457.0" onAction="#enlaceLogin" text="Volver a inicio de sesion">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="errorNombre" layoutX="269.0" layoutY="409.0" prefHeight="17.0" prefWidth="227.0" textFill="#f23726" />
+            <Label fx:id="errorNombre" layoutX="269.0" layoutY="406.0" prefHeight="17.0" prefWidth="227.0" textFill="#f23726" />
             <Label alignment="CENTER" layoutX="255.0" layoutY="172.0" prefHeight="17.0" prefWidth="176.0" text="Registro Usuario">
                <font>
                   <Font size="22.0" />

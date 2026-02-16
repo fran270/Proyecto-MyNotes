@@ -6,14 +6,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class ControladorUsuarios {
 
     //TABLA USUARIOS
     //Metodo para comprobar si el usuario que inicia sesion esta en la bd
     public static boolean iniciarSesion(String usuario, String contrasena) {
+        
+        String contrasenaEncriptada = ControladorUsuarios.obtenerContrasena(usuario);
 
+        // Comprobar si la contraseña introducida coincide con la encriptada
+        /*if (BCrypt.checkpw(contrasena, contrasenaEncriptada)) {
+            contrasena = contrasenaEncriptada;
+        }*/
+        
         String sql = "SELECT * FROM usuarios WHERE usuario = ? and contrasena = ?";
 
         try (Connection conexion = conectarBD()) {
@@ -26,13 +35,12 @@ public class ControladorUsuarios {
                 ResultSet resultadoConsulta = consultaSelect.executeQuery();
 
                 if (resultadoConsulta.next()) {
-
+                   
                     while (resultadoConsulta.next()) {
 
                         int id = resultadoConsulta.getInt("id");
-                        String usu = resultadoConsulta.getString("usuario");
-                        String password = resultadoConsulta.getString("contrasena");
-
+                        String nombreUsuario = resultadoConsulta.getString("usuario");
+                        String contraseña = resultadoConsulta.getString("contrasena");
                     }
 
                     return true;
@@ -83,6 +91,67 @@ public class ControladorUsuarios {
 
         return id;
     }
+    
+    public static String obtenerContrasena(String usuario) {
+
+        String contrasena = "";
+        String sql = "SELECT contrasena FROM usuarios WHERE usuario = ?";
+
+        try (Connection conexion = conectarBD()) {
+
+            try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
+
+                consultaSelect.setString(1, usuario);
+
+                ResultSet resultadoConsulta = consultaSelect.executeQuery();
+
+                while (resultadoConsulta.next()) {
+
+                    contrasena = resultadoConsulta.getString("contrasena");
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error al ejecutar la consulta");
+                System.out.printf("ERROR: %s\n", e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en la conexion con la base de datos");
+            System.out.printf("ERROR: %s\n", e.getMessage());
+        }
+
+        return contrasena;
+    }
+
+    //Metodo para obtener todos los usuarios registrados
+    public static void obtenerUsuarios() {
+
+        String sql = "SELECT * FROM usuarios";
+
+        try (Connection conexion = conectarBD()) {
+
+            try (Statement consultaSelect = conexion.createStatement()) {
+
+                ResultSet resultadoConsulta = consultaSelect.executeQuery(sql);
+
+                while (resultadoConsulta.next()) {
+
+                    String usuario = resultadoConsulta.getString("usuario");
+                    String contrasena = resultadoConsulta.getString("contrasena");
+                    String correo = resultadoConsulta.getString("email");
+                    String nombre = resultadoConsulta.getString("nombre");
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Se ha producido un error en la consulta");
+                System.out.printf("ERROR: %s", e.getMessage());
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en la conexion con la bd");
+            System.out.printf("ERROR: %s", e.getMessage());
+        }
+    }
 
     //Metodo para insertar nuevo usuario
     public static void insertarUsuario(Usuario usuario) {
@@ -108,12 +177,12 @@ public class ControladorUsuarios {
 
             } catch (SQLException e) {
                 System.out.println("Error al insertar el usuario");
-                System.out.printf("ERROR: %s", e.getMessage());
+                System.out.printf("ERROR: %s\n", e.getMessage());
             }
 
         } catch (SQLException e) {
             System.out.println("Error en la conexion con la bd");
-            System.out.printf("ERROR: %s", e.getMessage());
+            System.out.printf("ERROR: %s\n", e.getMessage());
         }
 
     }
@@ -157,25 +226,25 @@ public class ControladorUsuarios {
         String sql = "DELETE FROM usuarios WHERE id = ?";
 
         try (Connection conexion = conectarBD()) {
-            
-            try(PreparedStatement consultaDelete = conexion.prepareStatement(sql)){
-                
+
+            try (PreparedStatement consultaDelete = conexion.prepareStatement(sql)) {
+
                 consultaDelete.setInt(1, id);
-                
+
                 int resultadoConsulta = consultaDelete.executeUpdate();
-                
-                if(resultadoConsulta > 0){
+
+                if (resultadoConsulta > 0) {
                     JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
                 } else {
                     JOptionPane.showMessageDialog(null, "No se ha podido borrar el usuario", "Error de borrado de usuario", JOptionPane.ERROR_MESSAGE);
                 }
-                
-            } catch(SQLException e){
+
+            } catch (SQLException e) {
                 System.out.println("Ha ocurrido un error en la consulta");
-                System.out.printf("Error: %s",e.getMessage());
+                System.out.printf("Error: %s", e.getMessage());
             }
 
-        } catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error en la conexion con la bd");
             System.out.printf("ERROR: %s", e.getMessage());
         }

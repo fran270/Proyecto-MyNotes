@@ -75,12 +75,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <MenuButton fx:id="etiqueta" contentDisplay="BOTTOM" layoutX="288.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="283.0" text="Seleccione una etiqueta">
+      <MenuButton fx:id="etiqueta" contentDisplay="BOTTOM" layoutX="288.0" layoutY="411.0" mnemonicParsing="false" onMouseClicked="#seleccionarEtiqueta" prefHeight="25.0" prefWidth="283.0" text="Seleccione una etiqueta">
          <items>
-            <MenuItem fx:id="formato1" mnemonicParsing="false" style="-fx-max-width: 100px;" text="#tareaPendiente" />
-            <MenuItem fx:id="formato2" mnemonicParsing="false" text="#musica" />
-            <MenuItem mnemonicParsing="false" text="#trabajo" />
-            <MenuItem mnemonicParsing="false" text="#importante" />
+            <MenuItem fx:id="etiqueta1" mnemonicParsing="false" style="-fx-max-width: 100px;" text="#tareaPendiente" />
+            <MenuItem fx:id="etiqueta2" mnemonicParsing="false" text="#musica" />
+            <MenuItem fx:id="etiqueta3" mnemonicParsing="false" text="#trabajo" />
+            <MenuItem fx:id="etiqueta4" mnemonicParsing="false" text="#importante" />
          </items>
       </MenuButton>
    </children>

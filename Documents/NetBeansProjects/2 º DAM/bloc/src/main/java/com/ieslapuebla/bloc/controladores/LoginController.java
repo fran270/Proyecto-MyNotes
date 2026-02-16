@@ -25,6 +25,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginController implements Initializable {
 
@@ -52,25 +53,33 @@ public class LoginController implements Initializable {
         String nombreUsuario = usuario.getText();
         String password = contrasena.getText();
 
-        Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
-
+        Border bordeRojo = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
+        Border bordeVerde = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
+         
+        
         if (nombreUsuario.isEmpty() && password.isEmpty()) {
             errorUsuario.setText("El nombre de usuario no es valido");
-            usuario.setBorder(border);
+            usuario.setBorder(bordeRojo);
 
             errorContrasena.setText("La contraseña no es valida");
-            contrasena.setBorder(border);
+            contrasena.setBorder(bordeRojo);
 
         } else if (nombreUsuario.isEmpty()) {
             errorUsuario.setText("El nombre de usuario no es valido");
-            usuario.setBorder(border);
+            usuario.setBorder(bordeRojo);
 
         } else if (password.isEmpty()) {
+            errorUsuario.setText("");
+            usuario.setBorder(bordeVerde);
+            
             errorContrasena.setText("La contraseña no es valida");
-            contrasena.setBorder(border);
+            contrasena.setBorder(bordeRojo);
 
         } else if (ControladorUsuarios.iniciarSesion(nombreUsuario, password)) {
-
+            
+            errorContrasena.setText("");
+            contrasena.setBorder(bordeVerde);
+            
             Usuario usuario1 = new Usuario();
             usuario1.setUsuario(nombreUsuario);
             
@@ -88,8 +97,11 @@ public class LoginController implements Initializable {
             stage.show();
 
         } else {
+            
             JOptionPane.showMessageDialog(null, "No estas registrado", "Usuario no registrado", JOptionPane.ERROR_MESSAGE);
         }
+        
+       
     }
 
     @FXML

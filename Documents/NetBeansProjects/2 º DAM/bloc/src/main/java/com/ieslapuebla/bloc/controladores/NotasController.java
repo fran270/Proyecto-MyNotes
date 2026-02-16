@@ -66,9 +66,7 @@ public class NotasController implements Initializable {
     @FXML
     private MenuItem etiqueta3;
     @FXML
-    private MenuItem notasFijadas;
-    @FXML
-    private MenuItem op1;
+    private MenuItem etiqueta4;
     @FXML
     private Button botonInsertar;
     @FXML
@@ -77,12 +75,12 @@ public class NotasController implements Initializable {
     private Button botonEliminar;
     @FXML
     private Button botonExportar;
-    
+
     private Nota notaSeleccionada;
     private String usuario;
     private ObservableList<Nota> notas;
     private int idUsuario;
-    
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,6 +117,29 @@ public class NotasController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    @FXML
+    private void importarNota() throws IOException {
+
+        Stage stage = (Stage) opcion2.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ImportarNota.fxml"));
+
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        stage.show();
+    }
+    
+    @FXML
+    private void notasImportantes(ActionEvent event) throws IOException {
+        
+        Stage stage = (Stage) opcion2.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/NotasImportantes.fxml"));
+
+        Scene escena = new Scene(root);
+        stage.setScene(escena);
+        stage.show();
+    }
+
 
     @FXML
     private void verPapelera(MouseEvent ev) {
@@ -136,9 +157,9 @@ public class NotasController implements Initializable {
             System.out.println("Error al cargar el fichero");
             System.out.printf("ERROR: %s", ex.getMessage());
         }
-
     }
 
+    
     @FXML
     private void crearNota(ActionEvent event) throws IOException {
 
@@ -161,7 +182,7 @@ public class NotasController implements Initializable {
 
                 JOptionPane.showMessageDialog(null, "Selecciona la nota que desea modificar",
                         "Mensaje de advertencia", JOptionPane.ERROR_MESSAGE);
-
+                
             } else {
 
                 try {
@@ -186,19 +207,7 @@ public class NotasController implements Initializable {
                     System.out.printf("ERROR: %s", ex.getMessage());
                 }
             }
-
         });
-    }
-
-    @FXML
-    private void importarNota() throws IOException {
-
-        Stage stage = (Stage) opcion2.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ImportarNota.fxml"));
-
-        Scene escena = new Scene(root);
-        stage.setScene(escena);
-        stage.show();
     }
 
     @FXML
@@ -210,7 +219,18 @@ public class NotasController implements Initializable {
             JOptionPane.showMessageDialog(null, "Selecciona la nota que desea borrar",
                     "Mensaje de advertencia", JOptionPane.ERROR_MESSAGE);
         } else {
-            ControladorNotas.eliminarNota(notaSeleccionada.getIdNota());
+            
+            int idNota = notaSeleccionada.getIdNota();
+            String nombreNota = notaSeleccionada.getNombreNota();
+            String contenidoNota = notaSeleccionada.getContenido();
+            String fecha = notaSeleccionada.getFechaCreacion();
+            String fechaActualizacion = notaSeleccionada.getFechaModificacion();
+            
+            Nota notaEliminar = new Nota(idNota, nombreNota, contenidoNota, fecha, fechaActualizacion);
+            ControladorPapelera.moverNotaPapelera(notaEliminar, idUsuario);
+            
+            //ControladorNotas.eliminarNota(notaSeleccionada.getIdNota());
+            
             actualizarTablaNotas();
         }
     }
@@ -240,13 +260,14 @@ public class NotasController implements Initializable {
                 Nota nota1 = new Nota(idNota, nombreNota, contenidoNota, fecha, fechaActualizacion);
 
                 controlador.initialize(nota1);
-                
+
                 Stage stage = (Stage) botonExportar.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
 
             } catch (IOException e) {
+                
                 System.out.println("Ha ocurrido un error al cargar el fichero");
                 System.out.printf("ERROR: %s", e.getMessage());
             }
@@ -256,7 +277,7 @@ public class NotasController implements Initializable {
     private void actualizarTablaNotas() {
 
         notas = FXCollections.observableArrayList();
-
+     
         if (ControladorNotas.verNotas(notas, idUsuario)) {
 
             tabla.setItems(notas);
@@ -265,6 +286,13 @@ public class NotasController implements Initializable {
             contenido.setCellValueFactory(new PropertyValueFactory<Nota, String>("contenido"));
             fechaCreacion.setCellValueFactory(new PropertyValueFactory<Nota, String>("fechaCreacion"));
             fechaModificacion.setCellValueFactory(new PropertyValueFactory<Nota, String>("fechaModificacion"));
+            
+        } else {
+            
+            Label texto = new Label("No has creado ninguna nota");
+            
+            // Cambiamos el texto del centro de la tabla
+            tabla.setPlaceholder(texto);
         }
     }
 
@@ -284,6 +312,11 @@ public class NotasController implements Initializable {
         etiqueta3.setOnAction(e -> {
 
             etiquetas.setText(etiqueta3.getText());
+        });
+        
+        etiqueta4.setOnAction(e -> {
+            
+            etiquetas.setText(etiqueta4.getText());
         });
     }
 
@@ -311,23 +344,22 @@ public class NotasController implements Initializable {
             String nombreNota = datosNota[0];
             String contenidoNota = datosNota[1];*/
             
-            ControladorNotas.filtrarNota(notas, inputBuscador, idUsuario);
-            
-            // Sino, filtramos la nota a buscar mediante su fecha
-            /*if (ControladorNotas.filtrarNota(notas, inputBuscador, idUsuario)) {
+            notas = ControladorNotas.filtrarNota(notas, inputBuscador, idUsuario);
 
-                //Se actualiza la tabla y muestra las notas que tengan el nombre obtenido del buscador
-                tabla.setItems(notas);
-
-                nota.setCellValueFactory(new PropertyValueFactory<Nota, String>("nombreNota"));
-                contenido.setCellValueFactory(new PropertyValueFactory<Nota, String>("contenido"));
-                fechaCreacion.setCellValueFactory(new PropertyValueFactory<Nota, String>("fechaCreacion"));
-                fechaModificacion.setCellValueFactory(new PropertyValueFactory<Nota, String>("fechaModificacion"));
-
+            if (notas.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nota no encontrada", null, JOptionPane.ERROR_MESSAGE);
             } else {
 
-                JOptionPane.showMessageDialog(null, "Nota no encontrada", null, JOptionPane.ERROR_MESSAGE);
-            }*/
+                for (Nota nota1 : notas) {
+
+                    tabla.setItems(notas);
+
+                    nota.setCellValueFactory(new PropertyValueFactory<Nota, String>("nombreNota"));
+                    contenido.setCellValueFactory(new PropertyValueFactory<Nota, String>("contenido"));
+                    fechaCreacion.setCellValueFactory(new PropertyValueFactory<Nota, String>("fechaCreacion"));
+                    fechaModificacion.setCellValueFactory(new PropertyValueFactory<Nota, String>("fechaModificacion"));
+                }
+            }
         }
 
     }
@@ -338,4 +370,5 @@ public class NotasController implements Initializable {
         Platform.exit();
         System.exit(0);
     }
+
 }

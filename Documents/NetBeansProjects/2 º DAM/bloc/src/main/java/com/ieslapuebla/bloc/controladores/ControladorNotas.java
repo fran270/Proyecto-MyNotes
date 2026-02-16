@@ -28,7 +28,7 @@ public class ControladorNotas {
 
                     idNota = resultadoConsulta.getInt("id_nota");
                     String nombreNota = resultadoConsulta.getString("nombre_nota");
-                    String contenido = resultadoConsulta.getString("descripcion");
+                    String contenido = resultadoConsulta.getString("contenido");
                     String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
                     String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
 
@@ -63,7 +63,7 @@ public class ControladorNotas {
                 while (resultadoConsulta.next()) {
 
                     idNota = resultadoConsulta.getInt("id_nota");
-                    System.out.println(idNota);
+                    
                 }
 
             } catch (SQLException e) {
@@ -97,17 +97,17 @@ public class ControladorNotas {
 
                     int idNota = resultadoConsulta.getInt("id_nota");
                     String nombreNota = resultadoConsulta.getString("nombre_nota");
-                    String contenidoNota = resultadoConsulta.getString("descripcion");
+                    String contenidoNota = resultadoConsulta.getString("contenido");
                     String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
                     String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
 
                     notas.add(new Nota(idNota, nombreNota, contenidoNota, fechaCreacion, fechaModificacion));
                 }
-
+                
                 return true;
-
+                
             } catch (SQLException e) {
-                System.out.println("Error al ejecutar la consulta");
+                System.out.println("No se ha podido ejecutar la consulta");
                 System.out.printf("ERROR: %s", e.getMessage());
             }
 
@@ -122,7 +122,7 @@ public class ControladorNotas {
     //Metodo para crear una nueva nota
     public static void insertarNota(Nota nota) {
 
-        String sql = "INSERT INTO notas(nombre_nota, descripcion, fecha_creacion, fecha_modificacion, usuarios_id) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO notas(nombre_nota, contenido, fecha_creacion, fecha_modificacion, etiqueta, usuarios_id) VALUES(?, ?, ?, ?, ?, ?)";
 
         try (Connection conexion = conectarBD()) {
 
@@ -132,7 +132,8 @@ public class ControladorNotas {
                 consultaInsert.setString(2, nota.getContenido());
                 consultaInsert.setString(3, nota.getFechaCreacion());
                 consultaInsert.setString(4, nota.getFechaModificacion());
-                consultaInsert.setInt(5, nota.getIdUsuario());
+                consultaInsert.setString(5, nota.getEtiqueta());
+                consultaInsert.setInt(6, nota.getIdUsuario());
 
                 int resultadoConsulta = consultaInsert.executeUpdate();
 
@@ -156,7 +157,7 @@ public class ControladorNotas {
     //Metodo para realizar cambios en la nota
     public static void modificarNota(Nota notaModificar) {
 
-        String sql = "UPDATE notas SET nombre_nota = ?, descripcion = ?, fecha_modificacion = ? WHERE id_nota = ?";
+        String sql = "UPDATE notas SET nombre_nota = ?, contenido = ?, fecha_modificacion = ? WHERE id_nota = ?";
 
         try (Connection conexion = conectarBD()) {
 
@@ -170,7 +171,7 @@ public class ControladorNotas {
                 int resultadoConsulta = consultaUpdate.executeUpdate();
 
                 if (resultadoConsulta > 0) {
-                    JOptionPane.showMessageDialog(null, "Se ha modificado la nota");
+                    JOptionPane.showMessageDialog(null, "La nota se ha actualizado correctamente");
                 } else {
                     JOptionPane.showMessageDialog(null, "No se ha podido modificar la nota", null, JOptionPane.ERROR_MESSAGE);
                 }
@@ -260,10 +261,11 @@ public class ControladorNotas {
         return false;
     }
 
-    public static void filtrarNota(ObservableList<Nota> notas, String nombreNota, int idUsuario) {
+    
+    public static ObservableList<Nota> filtrarNota(ObservableList<Nota> notas, String nombreNota, int idUsuario) {
 
         String sql = "SELECT * FROM notas WHERE nombre_nota = ? and usuarios_id = ?";
-
+           
         try (Connection conexion = conectarBD()) {
 
             try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
@@ -277,13 +279,11 @@ public class ControladorNotas {
 
                     int idNota = resultadoConsulta.getInt("id_nota");
                     String nota = resultadoConsulta.getString("nombre_nota");
-                    String contenido = resultadoConsulta.getString("descripcion");
+                    String contenido = resultadoConsulta.getString("contenido");
                     String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
                     String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
                     
                     notas.add(new Nota(idNota, nota, contenido, fechaCreacion, fechaModificacion));
-                    
-                    //return true;
                 }
                   
             } catch(SQLException e){
@@ -296,46 +296,6 @@ public class ControladorNotas {
             System.out.printf("Error: %s", e.getMessage());
         }
         
-        //return false;
+        return notas;
     }
-
-    
-    /*public static boolean filtrarNota(ObservableList<Nota> notas, String contenidoNota, int idUsuario) {
-
-        String sql = "SELECT * FROM notas WHERE descripcion = ? and usuarios_id = ?";
-
-        try (Connection conexion = conectarBD()) {
-
-            try (PreparedStatement consultaSelect = conexion.prepareStatement(sql)) {
-
-                consultaSelect.setString(1, contenidoNota);
-                consultaSelect.setInt(2, idUsuario);
-
-                ResultSet resultadoConsulta = consultaSelect.executeQuery();
-                
-                while (resultadoConsulta.next()) {
-
-                    int idNota = resultadoConsulta.getInt("id_nota");
-                    String nota = resultadoConsulta.getString("nombre_nota");
-                    String contenido = resultadoConsulta.getString("descripcion");
-                    String fechaCreacion = resultadoConsulta.getString("fecha_creacion");
-                    String fechaModificacion = resultadoConsulta.getString("fecha_modificacion");
-
-                    notas.add(new Nota(idNota, nota, contenido, fechaCreacion, fechaModificacion));
-                    
-                    return true;
-                }
-                  
-            } catch(SQLException e){
-                System.out.println("Error al ejecutar la consulta");
-                System.out.printf("ERROR: %s",e.getMessage());
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error en la conexion con la bd");
-            System.out.printf("Error: %s", e.getMessage());
-        }
-        
-        return false;
-    }*/
 }

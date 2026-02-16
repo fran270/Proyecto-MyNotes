@@ -57,19 +57,23 @@ public class InsertarNotaController implements Initializable {
     private Button botonGuardar;
     @FXML
     private ImageView iconoInsertar;
-   
+    @FXML
+    private MenuButton etiqueta;
+    @FXML
+    private MenuItem etiqueta1;
+    @FXML
+    private MenuItem etiqueta2;
+    @FXML
+    private MenuItem etiqueta3;
+    @FXML
+    private MenuItem etiqueta4;
+    
     private ObservableList<Nota> notas;
     private String usuario;
     private String tituloNota;
     private String contenidoNota;
     private String fechaCreacion;
     private int usuarioId;
-    @FXML
-    private MenuButton etiqueta;
-    @FXML
-    private MenuItem formato1;
-    @FXML
-    private MenuItem formato2;
    
 
     @Override
@@ -122,35 +126,64 @@ public class InsertarNotaController implements Initializable {
         tituloNota = nombreNota.getText();
         contenidoNota = descripcionNota.getText();
         fechaCreacion = fecha.getText();
+        String etiquetaSeleccionada = etiqueta.getText();
         usuarioId = ControladorUsuarios.obtenerId(usuario);
+        
+        
 
-        Border border = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
-      
+        Border bordeRojo = new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1)));
+        Border bordeVerde = new Border(new BorderStroke(Color.GREEN, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(1))); 
+        
         boolean notaExiste = ControladorNotas.comprobarNombreNota(tituloNota);
 
         if (tituloNota.isEmpty()) {
             
             errorNombreNota.setText("Introduzca el nombre de la nota");
-            nombreNota.setBorder(border);
+            nombreNota.setBorder(bordeRojo);
        
         } else if (notaExiste) {
             
             errorNombreNota.setText("El nombre de la nota ya existe");
-            nombreNota.setBorder(border);
+            nombreNota.setBorder(bordeRojo);
 
         } else if (contenidoNota.isEmpty()) {
             
+            errorNombreNota.setText("");
+            nombreNota.setBorder(bordeVerde);
+            
             errorDescripcionNota.setText("Introduzca el contenido de la nota");
-            descripcionNota.setBorder(border);
+            descripcionNota.setBorder(bordeRojo);
             
-        } else {
+        } 
+        else {
             
-            Nota nota = new Nota(tituloNota, contenidoNota, fechaCreacion, null, usuarioId);
-            ControladorNotas.insertarNota(nota);
+            System.out.println(etiquetaSeleccionada);
+            Nota notaInsertar = new Nota(tituloNota, contenidoNota, fechaCreacion, null, etiquetaSeleccionada, usuarioId);
+           
+            ControladorNotas.insertarNota(notaInsertar);
             
             limpiarCampos();
         }
-
+    }
+    
+    @FXML
+    private void seleccionarEtiqueta(MouseEvent event) {
+        
+        etiqueta1.setOnAction(e -> {
+            etiqueta.setText(etiqueta1.getText());
+        });
+        
+        etiqueta2.setOnAction(e -> {
+            etiqueta.setText(etiqueta2.getText());
+        });
+        
+        etiqueta3.setOnAction(e -> {
+            etiqueta.setText(etiqueta3.getText());
+        });
+        
+        etiqueta4.setOnAction(e -> {
+            etiqueta.setText(etiqueta4.getText());
+        });
     }
     
     public void limpiarCampos(){
@@ -164,5 +197,5 @@ public class InsertarNotaController implements Initializable {
         
         Platform.exit();
         System.exit(0);
-    }
+    }   
 }

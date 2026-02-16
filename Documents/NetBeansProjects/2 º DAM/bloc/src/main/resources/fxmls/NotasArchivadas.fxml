@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="421.0" prefWidth="732.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.ieslapuebla.bloc.controladores.NotasArchivadasController">
+   <children>
+      <Pane prefHeight="53.0" prefWidth="730.0" style="-fx-background-color: rgb(63, 188, 192);">
+         <children>
+            <Label layoutX="627.0" layoutY="18.0" onMouseClicked="#cerrarSesion" prefHeight="18.0" prefWidth="95.0" text="Cerrar Sesion" />
+            <Label fx:id="opcion1" layoutX="269.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="89.0" text="INICIO" textFill="#070606" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="usuarioConectado" alignment="CENTER" layoutX="518.0" layoutY="11.0" prefHeight="31.0" prefWidth="102.0" textFill="#070606" />
+            <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="opcion3" layoutX="448.0" layoutY="18.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA" textFill="#070606">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <MenuBar fx:id="opcion2" layoutX="343.0" layoutY="16.0" prefHeight="18.0" prefWidth="80.0" style="-fx-background-color: rgb(63, 188, 192);">
+               <menus>
+                  <Menu mnemonicParsing="false" text="NOTAS">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
+                        <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
+                        <MenuItem mnemonicParsing="false" onAction="#notasImportantes" text="Notas Importantes" />
+                        <MenuItem mnemonicParsing="false" onAction="#notasArchivadas" text="Notas Archivadas" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

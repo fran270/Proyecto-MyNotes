@@ -25,33 +25,36 @@ import javafx.stage.Stage;
 
 public class ModificarNotaController implements Initializable {
 
-    @FXML
-    private Label cerrar;
+    
     @FXML
     private Label opcion1;
     @FXML
     private Label opcion2;
     @FXML
+    private Label opcion3;
+    @FXML
     private Label usuarioConectado;
+    @FXML
+    private Label cerrar;
+    @FXML
+    private ImageView iconoModificar;
     @FXML
     private TextField nombreNota;
     @FXML
     private TextArea descripcionNota;
     @FXML
-    private Button boton_modificar;
-    @FXML
     private TextField fechaModificacion;
     @FXML
-    private ImageView iconoModificar;
-    @FXML
-    private Label opcion3;
+    private Button botonModificar;
     @FXML
     private Button botonAutoguardar;
     @FXML
     private Button botonDeshacer;
+    
     private String usuario;
     private int idNota;
     private ObservableList<Nota> notas;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,6 +94,7 @@ public class ModificarNotaController implements Initializable {
             stage.show();
 
         } catch (IOException ex) {
+            
             System.out.printf("ERROR: %s\n", ex.getMessage());
         }
 
@@ -99,7 +103,7 @@ public class ModificarNotaController implements Initializable {
     public void recibirIdNota(int id) {
 
         this.idNota = id;
-
+        
         cargarDatos(idNota);
     }
 

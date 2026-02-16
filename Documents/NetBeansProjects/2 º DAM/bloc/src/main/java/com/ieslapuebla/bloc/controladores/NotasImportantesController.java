@@ -13,11 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class PortadaController implements Initializable {
+public class NotasImportantesController implements Initializable {
 
     @FXML
     private Label opcion1;
@@ -27,20 +26,11 @@ public class PortadaController implements Initializable {
     private Label opcion3;
     @FXML
     private Label usuarioConectado;
-    @FXML
-    private MenuItem op1;
-    @FXML
-    private MenuItem notasFijadas;
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        //Guardamos en una variable el nombre del usuario que ha iniciado sesion
-        String usu1 = Usuario.getUsuario();
 
-        //Mostramos el nombre de usuario conectado en label que tiene id usuario
-        usuarioConectado.setText(usu1);
+        usuarioConectado.setText(Usuario.getUsuario());
     }
 
     @FXML
@@ -51,13 +41,12 @@ public class PortadaController implements Initializable {
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        //stage.getIcons().add(new Image(PortadaController.class.getResource("/images/favicon.png").toExternalForm()));
         stage.show();
     }
 
     @FXML
     private void verNotas(ActionEvent event) throws IOException {
-        
+
         Stage stage = (Stage) opcion2.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Notas.fxml"));
 
@@ -65,10 +54,10 @@ public class PortadaController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
     private void importarNota(ActionEvent event) throws IOException {
-        
+
         Stage stage = (Stage) opcion2.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/fxmls/ImportarNota.fxml"));
 
@@ -76,17 +65,51 @@ public class PortadaController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
-    private void verPapelera(MouseEvent event) throws IOException {
-        
-        Stage stage = (Stage) opcion3.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
-        
+    private void notasImportantes(ActionEvent event) throws IOException {
+
+        Stage stage = (Stage) opcion2.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/NotasImportantes.fxml"));
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+    
+    @FXML
+    private void notasArchivadas(ActionEvent event) throws IOException {
+        
+        Stage stage = (Stage) opcion2.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxmls/NotasArchivadas.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML
+    private void verPapelera(MouseEvent event) {
+
+        Stage stage = (Stage) opcion3.getScene().getWindow();
+
+        try {
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/fxmls/Papelera.fxml"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+        } catch (IOException e) {
+            System.out.println("Error al cargar el fichero");
+            System.out.printf("ERROR: %s",e.getMessage());
+        }
+
+    }
+    
+    
 
     @FXML
     private void cerrarSesion(MouseEvent event) {
@@ -95,4 +118,5 @@ public class PortadaController implements Initializable {
         System.exit(0);
     }
 
+   
 }

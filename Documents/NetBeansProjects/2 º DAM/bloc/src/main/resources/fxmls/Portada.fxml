@@ -31,7 +31,7 @@
                      <items>
                         <MenuItem fx:id="op1" mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
                         <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
-                        <MenuItem fx:id="notasFijadas" mnemonicParsing="false" text="Notas Fijadas" />
+                        <MenuItem fx:id="notasFijadas" mnemonicParsing="false" text="Notas Importantes" />
                         <MenuItem mnemonicParsing="false" text="Notas Archivadas" />
                      </items>
                   </Menu>
