@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="509.0" prefWidth="722.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.PortadaController">
+    <stylesheets>
+        <URL value="@../css/portada.css" />
+    </stylesheets>
+    <children>
+      <Pane prefHeight="57.0" prefWidth="722.0" style="-fx-background-color: rgb(63, 188, 192);">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Logo%20MyNotes.png" />
+               </image></ImageView>
+            <Label fx:id="opcion1" layoutX="251.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="61.0" style="-fx-text-fill: black;" text="INICIO" textFill="#070606">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font></Label>
+            <MenuBar fx:id="opcion2" layoutX="327.0" layoutY="13.0" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: rgb(63, 188, 192);">
+               <menus>
+                  <Menu mnemonicParsing="false" style="-fx-color: gray; -fx-font-weight: bold; -fx-font-size: 14px;" text="NOTAS">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#verNotasArchivadas" text="Notas Archivadas" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+            <Label fx:id="opcion3" layoutX="436.0" layoutY="18.0" onMouseClicked="#verPapelera" prefHeight="18.0" prefWidth="70.0" text="PAPELERA" textFill="#070606">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font>
+            </Label>
+            <MenuBar layoutX="618.0" layoutY="10.0" prefHeight="37.0" prefWidth="47.0" style="-fx-background-radius: 10px; -fx-background-color: rgb(63, 188, 192);">
+               <menus>
+                  <Menu mnemonicParsing="false" style="-fx-background-radius: 6px;">
+                     <items>
+                        <MenuItem fx:id="usuario" mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
+                     </items>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icono_usuario.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+      <Pane layoutX="-1.0" layoutY="57.0" prefHeight="450.0" prefWidth="722.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="423.0" fitWidth="428.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/imagenPortada.png" />
+               </image></ImageView>
+            <Label layoutY="421.0" prefHeight="31.0" prefWidth="722.0" style="-fx-background-color: rgb(63, 188, 192);" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,12 @@
+.table-row-cell:selected {
+    -fx-fill: #4FC3F7;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: black;
+    -fx-background-color: #4FC3F7;
+}
+
+.columnaNota .column-header-background {
+    -fx-background-color: #2196F3;
+}

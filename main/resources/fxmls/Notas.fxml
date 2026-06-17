@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="577.0" prefWidth="814.0" style="-fx-background-color: rgb(205, 235, 232);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ieslapuebla.bloc.controladores.NotasController">
+    <stylesheets>
+        <URL value="@../css/notas.css" />
+    </stylesheets>
+    <children>
+      <Pane prefHeight="53.0" prefWidth="816.0" style="-fx-background-color: rgb(63, 188, 192);">
+         <children>
+            <Label fx:id="opcion1" layoutX="295.0" layoutY="18.0" onMouseClicked="#volverInicio" prefHeight="18.0" prefWidth="61.0" text="INICIO" textFill="#070606" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="14.0" />
+               </font></Label>
+            <ImageView fitHeight="40.0" fitWidth="176.0" layoutX="24.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Logo%20MyNotes.png" />
+               </image></ImageView>
+            <Label fx:id="opcion3" ellipsisString="" layoutX="507.0" layoutY="18.0" onMouseClicked="#verPapelera" prefHeight="19.0" prefWidth="80.0" text="PAPELERA" textFill="#070606">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="14.0" />
+               </font>
+            </Label>
+            <MenuBar fx:id="opcion2" layoutX="383.0" layoutY="13.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: rgb(63, 188, 192); -fx-font-family: Microsoft JhengHei UI;">
+              <menus>
+                <Menu mnemonicParsing="false" style="-fx-color: gray; -fx-font-weight: bold; -fx-font-size: 14px;" text="NOTAS">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#verNotas" text="Listado de Notas" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#importarNota" text="Importar Nota" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="notasImportantes" mnemonicParsing="false" onAction="#verNotasImportantes" text="Notas Importantes" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="notasArchivadas" mnemonicParsing="false" onAction="#verNotasArchivadas" text="Notas Archivadas" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <MenuBar layoutX="711.0" layoutY="9.0" prefHeight="31.0" prefWidth="27.0" style="-fx-background-radius: 10px; -fx-background-color: rgb(63, 188, 192);">
+              <menus>
+                <Menu mnemonicParsing="false" style="-fx-background-radius: 6px;">
+                  <items>
+                        <MenuItem fx:id="usuario" mnemonicParsing="false" />
+                    <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesión" />
+                  </items>
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icono_usuario.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+      <Label layoutX="68.0" layoutY="80.0" prefHeight="25.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Etiquetas:">
+         <font>
+            <Font name="Microsoft JhengHei UI" size="13.0" />
+         </font>
+      </Label>
+      <MenuButton fx:id="selectorEtiquetas" layoutX="68.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#seleccionarEtiqueta" prefHeight="25.0" prefWidth="198.0" style="-fx-background-color: rgb(253, 253, 253); -fx-border-radius: 10px;" text="Seleccione una etiqueta:">
+        <items>
+          <MenuItem fx:id="etiqueta1" mnemonicParsing="false" text="#tareaPendiente" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+          <MenuItem fx:id="crearEtiqueta" mnemonicParsing="false" text="Crear etiqueta" />
+        </items>
+         <font>
+            <Font name="Segoe UI" size="12.0" />
+         </font>
+      </MenuButton>
+      <Label layoutX="323.0" layoutY="80.0" prefHeight="25.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="Buscador de notas">
+         <font>
+            <Font name="Microsoft JhengHei UI" size="13.0" />
+         </font></Label>
+      <TextField fx:id="buscador" layoutX="322.0" layoutY="104.0" prefHeight="27.0" prefWidth="296.0" promptText="Introduzca el nombre o el contenido de la nota" style="-fx-border-radius: 10px; -fx-background-color: rgb(253, 253, 253);">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+      <MenuButton layoutX="630.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#seleccionarFiltro" prefHeight="25.0" prefWidth="95.0" text="Filtrar por">
+        <items>
+          <MenuItem fx:id="opcionFecha" mnemonicParsing="false" text="fecha" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+          <MenuItem fx:id="opcionEtiqueta" mnemonicParsing="false" text="etiqueta" />
+        </items>
+      </MenuButton>
+      <TableView fx:id="tabla" accessibleRole="TABLE_COLUMN" editable="true" fixedCellSize="0.0" layoutX="68.0" layoutY="152.0" prefHeight="344.0" prefWidth="657.0" style="-fx-background-radius: 6px; -fx-border-radius: 6px; -fx-background-color: white;" stylesheets="@../css/notas.css">
+        <columns>
+          <TableColumn fx:id="nota" prefWidth="112.0" style="-fx-font-family: Segoe; -fx-background-color: white; -fx-border-bottom-color: black;" text="Nota" />
+          <TableColumn fx:id="contenido" minWidth="9.0" prefWidth="191.0" style="-fx-background-color: rgb(253, 253, 253);;" text="Contenido" />
+            <TableColumn fx:id="etiqueta" minWidth="0.0" prefWidth="126.0" style="-fx-background-color: rgb(253, 253, 253);" text="Etiqueta" />
+            <TableColumn fx:id="fechaCreacion" prefWidth="111.0" style="-fx-background-color: rgb(253, 253, 253);" text="Fecha Creacion" />
+            <TableColumn fx:id="fechaModificacion" prefWidth="114.0" style="-fx-background-color: rgb(253, 253, 253);" text="Fecha Modificacion" />
+        </columns>
+      </TableView>
+      <Button fx:id="botonInsertar" layoutX="68.0" layoutY="509.0" mnemonicParsing="false" onAction="#crearNota" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: rgb(25, 135, 84); -fx-background-radius: 10px;" text="Crear" textFill="#070606">
+         <font>
+            <Font name="Gadugi" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icono_guardar.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="botonModificar" layoutX="182.0" layoutY="509.0" mnemonicParsing="false" onAction="#modificarNota" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: rgb(255, 199, 32); -fx-background-radius: 10px;" text="Modificar" textFill="#070606">
+         <font>
+            <Font name="Gadugi" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icono_editar.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="botonEliminar" layoutX="311.0" layoutY="509.0" mnemonicParsing="false" onAction="#moverNotaPapelera" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: rgb(220, 53, 69); -fx-background-radius: 10px;" text="Eliminar" textFill="#070606">
+         <font>
+            <Font name="Gadugi" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icono_borrar.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="botonExportar" layoutX="438.0" layoutY="509.0" mnemonicParsing="false" onAction="#exportarNota" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: rgb(161, 161, 161); -fx-background-radius: 10px;" text="Exportar" textFill="#070606">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/exportar_nota.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="botonArchivar" layoutX="553.0" layoutY="509.0" mnemonicParsing="false" onAction="#archivarNota" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #4FC3F7; -fx-background-radius: 10px;" text="Archivar" textFill="#070606">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/archivo.png" />
+               </image></ImageView>
+         </graphic></Button>
+      <Label layoutY="548.0" prefHeight="31.0" prefWidth="816.0" style="-fx-background-color: rgb(63, 188, 192);" />
+      <Button fx:id="botonFijar" layoutX="652.0" layoutY="508.0" mnemonicParsing="false" onAction="#fijarNota" prefHeight="33.0" prefWidth="73.0" style="-fx-background-color: rgb(161, 161, 161); -fx-background-radius: 10px;" text="Fijar" textFill="#070606">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
